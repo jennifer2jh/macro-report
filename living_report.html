@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글로벌 매크로 리포트 — Living Document</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+  --ink:#1a1814;--ink-mid:#3d3a34;--ink-muted:#7a7570;--ink-faint:#b0aca5;
+  --paper:#faf9f6;--paper-warm:#f4f1ec;--paper-mid:#ede9e2;--rule:#d8d3cb;
+  --era-trade:#7a4f1a;--era-tech:#1e4d7b;--era-war:#a02520;
+  --era-dollar:#3b2d6e;--era-now:#1a5c52;--era-new:#b5312c;
+  --daily:#0f766e;--weekly:#6d28d9;--monthly:#b45309;
+  --tooltip-bg:#2c2820;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.75;}
+
+/* ── TOP NAV ── */
+.top-nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--ink);
+  display:flex;align-items:stretch;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.top-nav-title{
+  padding:0 20px;display:flex;align-items:center;
+  font-family:'Playfair Display',serif;font-size:15px;
+  color:rgba(255,255,255,0.9);letter-spacing:0.02em;
+  border-right:1px solid rgba(255,255,255,0.08);
+  white-space:nowrap;flex-shrink:0;
+}
+.top-nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;}
+.top-nav-tabs::-webkit-scrollbar{display:none;}
+.tab-btn{
+  padding:13px 20px;cursor:pointer;white-space:nowrap;
+  font-size:12px;font-weight:600;letter-spacing:0.06em;
+  color:rgba(255,255,255,0.42);
+  border-bottom:2px solid transparent;
+  transition:all .2s;flex-shrink:0;
+}
+.tab-btn:hover{color:rgba(255,255,255,0.8);}
+.tab-btn.active{color:white;border-bottom-color:var(--tab-color,white);}
+
+/* ── PAGE ── */
+.page{display:none;} .page.active{display:block;}
+.page-wrap{max-width:900px;margin:0 auto;padding:48px 40px 100px;}
+
+/* ── MASTHEAD ── */
+.masthead{border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);padding:20px 0 16px;margin-bottom:6px;text-align:center;}
+.masthead-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px;}
+.masthead-title{font-family:'Playfair Display','Noto Serif KR',serif;font-size:34px;font-weight:700;line-height:1.15;color:var(--ink);}
+.masthead-sub{font-family:'Noto Serif KR',serif;font-size:13px;color:var(--ink-mid);margin-top:6px;font-weight:300;}
+.masthead-meta{margin-top:10px;font-size:11px;color:var(--ink-faint);}
+hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
+.update-badge{display:inline-block;margin-top:7px;background:var(--era-new);color:white;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:2px 9px;border-radius:2px;}
+
+/* ── EXEC ── */
+.exec-summary{border-left:4px solid var(--ink);padding:14px 20px;margin:24px 0 32px;background:var(--paper-warm);}
+.exec-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px;}
+.exec-points{list-style:none;}
+.exec-points li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.75;color:var(--ink-mid);margin-bottom:6px;}
+.exec-points li::before{content:'▶';position:absolute;left:0;font-size:8px;color:var(--ink);top:5px;}
+.exec-points li strong{color:var(--ink);font-weight:600;}
+.new-item{background:rgba(181,49,44,0.05);border-left:2px solid var(--era-new);margin-left:-6px;padding-left:18px!important;}
+.new-item::before{color:var(--era-new)!important;}
+
+/* ── ERA TIMELINE ── */
+.era-inner{border-left:4px solid var(--era-color,var(--rule));margin-left:18px;padding:0 0 36px 26px;}
+.era-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;position:relative;}
+.era-header::before{content:'';position:absolute;left:-40px;top:8px;width:13px;height:13px;border-radius:50%;background:var(--era-color,var(--rule));border:2px solid var(--paper);box-shadow:0 0 0 2px var(--era-color,var(--rule));}
+.era-date{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--era-color);line-height:1;}
+.era-date-sub{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px;}
+.era-tag{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--era-color);margin-bottom:2px;}
+.era-title{font-family:'Playfair Display','Noto Serif KR',serif;font-size:19px;font-weight:700;line-height:1.2;color:var(--ink);}
+.era-subtitle{font-size:12px;color:var(--ink-muted);margin-top:2px;font-style:italic;}
+
+/* ── EVENTS ── */
+.event-list{list-style:none;padding:0;}
+.event{position:relative;padding-left:20px;margin-bottom:16px;}
+.event::before{content:'';position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--era-color);opacity:0.5;}
+.event.new-event::before{opacity:1;background:var(--era-new);}
+.event-header{display:flex;align-items:baseline;gap:8px;margin-bottom:2px;flex-wrap:wrap;}
+.event-date{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--ink-faint);flex-shrink:0;}
+.event-title{font-size:13.5px;font-weight:600;color:var(--ink);}
+.event-points{list-style:none;padding:0;margin-top:4px;}
+.event-points li{position:relative;padding-left:14px;font-size:13px;line-height:1.7;color:var(--ink-mid);margin-bottom:3px;}
+.event-points li::before{content:'—';position:absolute;left:0;color:var(--ink-faint);}
+.event-points li strong{color:var(--ink);font-weight:600;}
+.sub-points{list-style:none;padding:0;margin:3px 0 3px 12px;}
+.sub-points li{position:relative;padding-left:10px;font-size:12px;line-height:1.6;color:var(--ink-muted);margin-bottom:2px;}
+.sub-points li::before{content:'·';position:absolute;left:0;font-size:14px;line-height:1.2;color:var(--ink-faint);}
+
+/* ── IMPACT ── */
+.impact{background:var(--paper-warm);border:1px solid var(--rule);border-left:3px solid var(--era-color,var(--rule));padding:10px 14px;margin:5px 0 10px;}
+.impact-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:4px;}
+.impact-row{display:flex;gap:16px;flex-wrap:wrap;}
+.impact-col{flex:1;min-width:130px;}
+.impact-col-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted);margin-bottom:3px;}
+.impact ul{list-style:none;padding:0;}
+.impact ul li{position:relative;padding-left:12px;font-size:12.5px;line-height:1.6;color:var(--ink-mid);margin-bottom:2px;}
+.impact ul li::before{content:'›';position:absolute;left:0;color:var(--ink-faint);}
+.impact ul li strong{color:var(--ink);font-weight:600;}
+
+/* ── CHAIN ── */
+.chain{display:flex;align-items:center;flex-wrap:wrap;gap:5px;padding:9px 13px;background:var(--paper-mid);border-radius:2px;margin:8px 0;font-size:12.5px;}
+.chain .node{background:white;border:1.5px solid var(--rule);padding:4px 9px;border-radius:3px;font-weight:500;color:var(--ink-mid);}
+.chain .node.hi{border-color:var(--era-color);color:var(--era-color);font-weight:600;}
+.chain .node.bad{border-color:#a02520;color:#a02520;}
+.chain .node.good{border-color:#1a5c52;color:#1a5c52;}
+.chain .arrow{color:var(--ink-faint);font-size:14px;}
+
+/* ── CALLOUT ── */
+.callout{border:1px solid var(--rule);padding:11px 15px;margin:12px 0;background:var(--paper-warm);}
+.callout-icon{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:5px;}
+.callout ul{list-style:none;padding:0;}
+.callout ul li{position:relative;padding-left:12px;font-size:13px;line-height:1.6;color:var(--ink-mid);margin-bottom:2px;}
+.callout ul li::before{content:'›';position:absolute;left:0;color:var(--ink-faint);}
+.callout ul li strong{color:var(--ink);font-weight:600;}
+
+/* ── SCENARIO ── */
+.scenario-box{border-left:3px solid var(--rule);padding:9px 14px;margin:7px 0;}
+.scenario-label{font-size:11px;font-weight:700;color:var(--ink-muted);margin-bottom:5px;}
+.scenario-box.good{border-left-color:var(--era-now);}
+.scenario-box.bad{border-left-color:var(--era-war);}
+.scenario-box.good .scenario-label{color:var(--era-now);}
+.scenario-box.bad .scenario-label{color:var(--era-war);}
+
+/* ── CONCLUSION ── */
+.conclusion{border:2px solid var(--ink);padding:22px 26px;margin-top:40px;}
+.conclusion-header{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:12px;}
+
+/* ── NEW SECTION BOX ── */
+.new-section-box{background:rgba(181,49,44,0.04);border:1.5px solid rgba(181,49,44,0.2);border-left:4px solid var(--era-new);padding:18px 22px;margin-bottom:14px;border-radius:0 4px 4px 0;}
+.new-section-tag{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--era-new);margin-bottom:6px;}
+.new-section-title{font-family:'Playfair Display','Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+
+/* ── STAT ROW ── */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:12px 0;}
+.stat-cell{background:var(--paper);padding:10px 12px;}
+.stat-label{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;}
+.stat-value{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ink);}
+.stat-desc{font-size:11px;color:var(--ink-muted);margin-top:2px;line-height:1.4;}
+
+/* ── TOOLTIP ── */
+.term{border-bottom:1px dashed var(--ink-muted);cursor:help;position:relative;display:inline;color:inherit;}
+.term:hover .tooltip{display:block;}
+.tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:260px;background:var(--tooltip-bg);color:#e8e4dc;font-size:12px;line-height:1.6;padding:9px 12px;border-radius:4px;z-index:999;pointer-events:none;font-family:'Noto Sans KR',sans-serif;}
+.tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--tooltip-bg);}
+.tooltip strong{display:block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a09a90;margin-bottom:3px;}
+
+/* ── FOOTER ── */
+.footer{margin-top:40px;padding-top:12px;border-top:1px solid var(--rule);font-size:11px;color:var(--ink-faint);line-height:1.7;}
+
+/* ═════════════════════════════════
+   DAILY NEWS TAB STYLES
+═════════════════════════════════ */
+.daily-page-wrap{max-width:900px;margin:0 auto;padding:36px 40px 100px;}
+
+.daily-header{
+  background:var(--ink);color:white;
+  padding:24px 28px;border-radius:4px;margin-bottom:28px;
+}
+.daily-header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
+.daily-header h1{font-family:'Playfair Display',serif;font-size:26px;}
+.daily-header p{font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;}
+.daily-guide{
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  border-radius:3px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.6);
+  line-height:1.7;
+}
+.daily-guide strong{color:rgba(255,255,255,0.9);}
+
+/* DATE GROUP */
+.date-group{margin-bottom:32px;}
+.date-group-header{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:16px;padding-bottom:8px;
+  border-bottom:2px solid var(--ink);
+}
+.date-group-date{
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink);
+}
+.date-group-day{font-size:12px;font-weight:700;color:var(--ink-muted);letter-spacing:.1em;text-transform:uppercase;}
+.date-group-badge{
+  margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  padding:2px 9px;border-radius:2px;background:var(--daily);color:white;
+}
+
+/* NEWS ITEM */
+.news-item{
+  background:white;border:1px solid var(--rule);border-radius:6px;
+  margin-bottom:12px;overflow:hidden;
+}
+.news-item-header{
+  padding:13px 16px 11px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+}
+.news-category{
+  font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  padding:2px 8px;border-radius:2px;color:white;flex-shrink:0;margin-top:2px;
+}
+.cat-war{background:#a02520;}
+.cat-tech{background:#1e4d7b;}
+.cat-market{background:#1a5c52;}
+.cat-trade{background:#7a4f1a;}
+.cat-ai{background:#3b2d6e;}
+.cat-macro{background:#0f766e;}
+.cat-other{background:#71717a;}
+
+.news-title{font-size:14px;font-weight:600;color:var(--ink);line-height:1.4;flex:1;}
+.news-source{font-size:11px;color:var(--ink-faint);margin-left:auto;flex-shrink:0;padding-top:2px;}
+.news-expand{font-size:16px;color:var(--ink-faint);flex-shrink:0;transition:transform .2s;}
+.news-expand.open{transform:rotate(180deg);}
+
+.news-body{
+  display:none;border-top:1px solid var(--rule);padding:14px 16px;
+  background:var(--paper-warm);
+}
+.news-body.open{display:block;}
+
+.news-summary{font-size:13.5px;color:var(--ink-mid);line-height:1.8;margin-bottom:10px;}
+.news-summary strong{color:var(--ink);font-weight:600;}
+
+.news-points{list-style:none;padding:0;margin-bottom:10px;}
+.news-points li{position:relative;padding-left:15px;font-size:13px;line-height:1.7;color:var(--ink-mid);margin-bottom:4px;}
+.news-points li::before{content:'—';position:absolute;left:0;color:var(--ink-faint);}
+.news-points li strong{color:var(--ink);font-weight:600;}
+
+.news-impact{
+  background:white;border:1px solid var(--rule);border-left:3px solid var(--daily);
+  padding:9px 13px;border-radius:0 4px 4px 0;
+}
+.news-impact-label{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--daily);margin-bottom:5px;}
+.news-impact p{font-size:13px;color:var(--ink-mid);line-height:1.65;}
+.news-impact p strong{color:var(--ink);font-weight:600;}
+
+.news-chain{display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding:8px 12px;background:var(--paper-mid);border-radius:3px;margin-top:8px;font-size:12px;}
+.nc-node{background:white;border:1px solid var(--rule);padding:3px 8px;border-radius:3px;font-weight:500;color:var(--ink-mid);}
+.nc-node.bad{border-color:#a02520;color:#a02520;font-weight:600;}
+.nc-node.good{border-color:#1a5c52;color:#1a5c52;font-weight:600;}
+.nc-arrow{color:var(--ink-faint);}
+
+/* ═════════════════════════════════
+   WEEKLY SUMMARY TAB
+═════════════════════════════════ */
+.weekly-page-wrap{max-width:900px;margin:0 auto;padding:36px 40px 100px;}
+
+.week-block{
+  background:white;border:1px solid var(--rule);border-radius:6px;
+  margin-bottom:20px;overflow:hidden;
+}
+.week-block-header{
+  padding:14px 18px;border-bottom:1px solid var(--rule);
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+}
+.week-block-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink);}
+.week-block-date{font-size:11px;color:var(--ink-faint);}
+.week-new-badge{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:var(--era-new);color:white;}
+.week-body{padding:16px 18px;}
+
+.week-themes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.week-theme-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px;border:1px solid var(--rule);color:var(--ink-muted);}
+
+.week-section-title{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:5px;border-bottom:1px solid var(--rule);margin-bottom:10px;margin-top:16px;}
+.week-section-title:first-of-type{margin-top:0;}
+
+.week-points{list-style:none;padding:0;margin-bottom:10px;}
+.week-points li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.75;color:var(--ink-mid);margin-bottom:5px;}
+.week-points li::before{content:'—';position:absolute;left:0;color:var(--ink-faint);}
+.week-points li strong{color:var(--ink);font-weight:600;}
+
+.week-outlook{background:var(--ink);color:white;padding:12px 15px;border-radius:4px;font-size:13px;line-height:1.65;}
+.week-outlook strong{color:var(--gold-light,#fcd34d);}
+.week-watchlist{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.watch-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);padding:3px 10px;border-radius:3px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.8);}
+
+/* ═════════════════════════════════
+   MONTHLY SUMMARY TAB
+═════════════════════════════════ */
+.monthly-page-wrap{max-width:900px;margin:0 auto;padding:36px 40px 100px;}
+
+.month-block{
+  background:white;border:1px solid var(--rule);border-radius:6px;
+  margin-bottom:24px;overflow:hidden;
+}
+.month-header{
+  padding:18px 22px;border-bottom:1px solid var(--rule);
+  background:var(--paper-warm);
+}
+.month-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);margin-bottom:4px;}
+.month-subtitle{font-size:12px;color:var(--ink-muted);}
+.month-in-progress{
+  display:inline-block;margin-left:8px;font-size:9px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;
+  border-radius:2px;background:var(--monthly);color:white;vertical-align:middle;
+}
+.month-body{padding:20px 22px;}
+.month-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:16px;}
+.month-kpi{background:var(--paper);padding:10px 12px;}
+.month-kpi-label{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;}
+.month-kpi-value{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);}
+.month-kpi-note{font-size:10.5px;color:var(--ink-muted);margin-top:1px;line-height:1.4;}
+
+.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.theme-block{border:1px solid var(--rule);border-radius:4px;padding:12px 14px;}
+.theme-block-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--rule);}
+.theme-block ul{list-style:none;padding:0;}
+.theme-block ul li{position:relative;padding-left:12px;font-size:12.5px;line-height:1.65;color:var(--ink-mid);margin-bottom:3px;}
+.theme-block ul li::before{content:'›';position:absolute;left:0;color:var(--ink-faint);}
+.theme-block ul li strong{color:var(--ink);font-weight:600;}
+
+/* monthly placeholder */
+.coming-soon{
+  text-align:center;padding:48px 20px;color:var(--ink-faint);
+  border:2px dashed var(--rule);border-radius:6px;margin-top:20px;
+}
+.coming-soon h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink-muted);margin-bottom:8px;}
+.coming-soon p{font-size:13px;line-height:1.7;}
+
+/* responsive */
+@media(max-width:620px){
+  .page-wrap,.daily-page-wrap,.weekly-page-wrap,.monthly-page-wrap{padding:24px 16px 72px;}
+  .masthead-title{font-size:26px;}
+  .stat-row,.month-kpi-row{grid-template-columns:1fr 1fr;}
+  .theme-grid{grid-template-columns:1fr;}
+  .impact-row{flex-direction:column;}
+  .top-nav-title{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TOP NAV ══ -->
+<nav class="top-nav">
+  <div class="top-nav-title">📊 Global Macro</div>
+  <div class="top-nav-tabs">
+    <div class="tab-btn active" style="--tab-color:#d8d3cb" onclick="switchTab('timeline',this)">🗺 타임라인</div>
+    <div class="tab-btn" style="--tab-color:var(--daily)" onclick="switchTab('daily',this)">📰 데일리 뉴스</div>
+    <div class="tab-btn" style="--tab-color:var(--weekly)" onclick="switchTab('weekly',this)">📋 주간 요약</div>
+    <div class="tab-btn" style="--tab-color:var(--monthly)" onclick="switchTab('monthly',this)">📆 월간 요약</div>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════
+     TAB 1: 타임라인 (기존 보고서)
+════════════════════════════════════════════ -->
+<div class="page active" id="tab-timeline">
+<div class="page-wrap">
+
+<div class="masthead">
+  <div class="masthead-eyebrow">Global Macro & Tech Intelligence — Living Document</div>
+  <div class="masthead-title">2025–2026 글로벌 흐름 타임라인</div>
+  <div class="masthead-sub">관세 전쟁 → AI 패권 → 달러 재편 → 전쟁 → 현재 시장 — 인과관계로 읽는 빅픽처</div>
+  <hr class="thin">
+  <div class="masthead-meta">Last updated: <strong>April 29, 2026</strong> &nbsp;·&nbsp; 데일리 뉴스레터 실시간 반영</div>
+  <div class="update-badge">🆕 Apr 28–29 업데이트 반영</div>
+</div>
+
+<div class="exec-summary">
+  <div class="exec-label">한 눈에 보는 핵심 흐름</div>
+  <ul class="exec-points">
+    <li><strong>트럼프 2기 출범(2025년 초)</strong>으로 관세·AI·달러 디지털화가 동시에 출발</li>
+    <li>미중 관세 145%까지 치솟다 협상·유예를 반복하며 기술 디커플링으로 전환</li>
+    <li>GENIUS Act 통과(2025년 7월)로 <strong>달러 패권이 스테이블코인으로 확장</strong></li>
+    <li>2026년 초 IEEPA 위헌 + 이란 전쟁 발발 → 에너지·인플레·금리 동시 충격</li>
+    <li class="new-item">🆕 <strong>S&P·나스닥 연속 사상 최고치</strong> — 빅테크 실적 기대감 + 이란 협상 재개 기대. 이익 전망 4개월간 12% 상향, 역사적 규모</li>
+    <li class="new-item">🆕 <strong>중국 산업이익 +15.8%</strong> — 유가 충격 속에서도 반도체·EV·로봇 중심 호황. 수입 가치 +54%</li>
+    <li class="new-item">🆕 <strong>OpenAI-Microsoft 독점 해제</strong> — OpenAI, 타 클라우드와 자유롭게 협업 가능. AI 생태계 지각변동</li>
+    <li class="new-item">🆕 <strong>중국, Meta의 Manus 인수 차단</strong> — AI 인재·기술 유출 방지. 중국 기업의 해외 투자 유치 억제 신호</li>
+    <li class="new-item">🆕 <strong>이란, 조건부 호르무즈 개방 제안</strong> — 미국 봉쇄 해제 + 전쟁 종료가 선행 조건. 트럼프 거부</li>
+    <li class="new-item">🆕 <strong>Intel 이익실현 신호</strong> — +285% 랠리 후 리스크-보상 비율 역전. "삽"에서 "과열"로</li>
+  </ul>
+</div>
+
+<!-- ERA 1~5 (기존 내용 유지) -->
+<div style="--era-color:var(--era-trade)">
+  <div class="era-inner">
+    <div class="era-header">
+      <div>
+        <div class="era-date">2025년 초</div>
+        <div class="era-date-sub">Jan – Apr</div>
+      </div>
+      <div>
+        <div class="era-tag">Trade · Tariffs</div>
+        <div class="era-title">트럼프 2기 출범 — 관세 전쟁의 시작</div>
+      </div>
+    </div>
+    <ul class="event-list">
+      <li class="event">
+        <div class="event-header"><span class="event-date">2025년 2~3월</span><span class="event-title">중국에 10% 관세 부과</span></div>
+        <ul class="event-points">
+          <li>IEEPA 근거 중국 전 수입품 10%. 명분: 펜타닐. 실질: <strong>AI·반도체 디커플링</strong></li>
+        </ul>
+      </li>
+      <li class="event">
+        <div class="event-header"><span class="event-date">2025년 4월 2일</span><span class="event-title">"해방의 날" — 전 세계 상호관세, 중국 최대 145%</span></div>
+        <div class="chain">
+          <span class="node bad">145% 충격</span><span class="arrow">→</span>
+          <span class="node">경기 둔화 우려</span><span class="arrow">→</span>
+          <span class="node good">협상 압력</span><span class="arrow">→</span>
+          <span class="node good">10% 휴전</span>
+        </div>
+      </li>
+      <li class="event">
+        <div class="event-header"><span class="event-date">2025년 11월</span><span class="event-title">부산 정상회담 — 관세 휴전 1년 연장(2026.11까지)</span></div>
+        <ul class="event-points">
+          <li>Section 301 관세 30% 유지 / 반도체·AI 수출 통제 계속 강화</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div style="--era-color:var(--era-tech)">
+  <div class="era-inner">
+    <div class="era-header">
+      <div>
+        <div class="era-date">2025년 중반</div>
+        <div class="era-date-sub">May – Aug</div>
+      </div>
+      <div>
+        <div class="era-tag">AI · Digital Dollar</div>
+        <div class="era-title">AI 패권 경쟁 본격화 + GENIUS Act 통과</div>
+      </div>
+    </div>
+    <ul class="event-list">
+      <li class="event">
+        <div class="event-header"><span class="event-date">2025년 초~중반</span><span class="event-title">DeepSeek 충격 — 하루 만에 ~1조 달러 증발</span></div>
+        <ul class="event-points">
+          <li>AI 경쟁: 모델 성능 → 데이터·컴퓨팅·유통 생태계 경쟁으로 전환</li>
+          <li>OpenAI·Anthropic·Google, 중국 <span class="term">모델 증류<span class="tooltip"><strong>모델 증류 (Distillation)</strong>고성능 AI 출력값으로 저렴한 복제 모델 학습. 수십억 달러 손실 + 안보 문제.</span></span> 공동 대응 시작</li>
+        </ul>
+      </li>
+      <li class="event">
+        <div class="event-header"><span class="event-date">2025년 7월 18일</span><span class="event-title">GENIUS Act 서명 — 달러 스테이블코인 법제화</span></div>
+        <ul class="event-points">
+          <li>100% 준비금 의무(미 달러·국채) → 스테이블코인 수요↑ = 미 국채 수요↑ = 달러 패권 강화</li>
+          <li>2030년까지 미 국채 추가 수요 <strong>1.9조 달러</strong> 창출 전망</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div style="--era-color:var(--era-trade)">
+  <div class="era-inner">
+    <div class="era-header">
+      <div>
+        <div class="era-date">2026년 초</div>
+        <div class="era-date-sub">Jan – Feb</div>
+      </div>
+      <div>
+        <div class="era-tag">Legal · Fed</div>
+        <div class="era-title">IEEPA 위헌 판결 + 연준 체제 전환 가시화</div>
+      </div>
+    </div>
+    <ul class="event-list">
+      <li class="event">
+        <div class="event-header"><span class="event-date">2026년 2월 20일</span><span class="event-title">대법원 IEEPA 관세 위헌 — 관세 체계 재편</span></div>
+      </li>
+      <li class="event">
+        <div class="event-header"><span class="event-date">2026년 초</span><span class="event-title">Kevin Warsh 연준 의장 후보 부상</span></div>
+        <ul class="event-points">
+          <li>QT 선호 → 장기채 금리 상승 압력 / DOJ 파월 수사 종료 → 인준 확실시</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div style="--era-color:var(--era-war)">
+  <div class="era-inner">
+    <div class="era-header">
+      <div>
+        <div class="era-date">2026년 3월</div>
+        <div class="era-date-sub">March</div>
+      </div>
+      <div>
+        <div class="era-tag">War · Energy</div>
+        <div class="era-title">미-이란 전쟁 발발 — 에너지 공급망 직격</div>
+      </div>
+    </div>
+    <ul class="event-list">
+      <li class="event">
+        <div class="event-header"><span class="event-date">2026년 3월</span><span class="event-title">미-이스라엘 이란 공격 + 호르무즈 봉쇄</span></div>
+        <div class="chain">
+          <span class="node bad">호르무즈 봉쇄</span><span class="arrow">→</span>
+          <span class="node bad">유가 $100+</span><span class="arrow">→</span>
+          <span class="node bad">공급 인플레</span><span class="arrow">→</span>
+          <span class="node bad">금리 인하 지연</span><span class="arrow">→</span>
+          <span class="node bad">성장주 압박</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ERA 6: 2026년 4월 — 최신 -->
+<div style="--era-color:var(--era-new)">
+  <div class="era-inner">
+    <div class="era-header">
+      <div>
+        <div class="era-date">2026년 4월</div>
+        <div class="era-date-sub">진행 중 🆕</div>
+      </div>
+      <div>
+        <div class="era-tag">War · AI · Markets · Now</div>
+        <div class="era-title">이익 사상 최대 + AI 재편 + 이란 협상 교착</div>
+      </div>
+    </div>
+
+    <!-- Apr 27–28 이전 업데이트 -->
+    <div class="new-section-box">
+      <div class="new-section-tag">Apr 21–27 업데이트</div>
+      <div class="new-section-title">이란 2차 협상 무산 · Intel 폭발 · 연준 체제 전환</div>
+      <ul class="event-list">
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 21~22일</span><span class="event-title">파키스탄 2차 회담 완전 무산</span></div>
+          <ul class="event-points">
+            <li>이란 측 파키스탄 이탈 → 트럼프 사절단 파견 취소. "We have all the cards!"</li>
+            <li>3~5일 추가 시한 부여, 해군 봉쇄 유지</li>
+          </ul>
+        </li>
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 23~25일</span><span class="event-title">Intel Q1 2026 폭발 실적 — CPU 시대 도래 확인</span></div>
+          <ul class="event-points">
+            <li>매출 $13.6B (+7.2%), 조정 EPS $0.29 (예상 $0.01의 29배). 데이터센터 +22%</li>
+            <li>SOX 지수 18거래일 연속 상승 (+47%) — 역사상 최장</li>
+            <li>AI 추론·에이전트 단계: CPU:GPU 비율 1:8 → 1:1 방향 이동 확인</li>
+          </ul>
+        </li>
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 25일</span><span class="event-title">DOJ 파월 수사 종료 → Warsh 인준 확실시</span></div>
+          <ul class="event-points">
+            <li>Tillis 의원 "Warsh 인준 지지" 선언. 파월 5월 15일 임기 종료</li>
+            <li>이번 주 수요일 FOMC가 파월의 마지막 회의 가능성</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Apr 28–29 최신 업데이트 -->
+    <div class="new-section-box">
+      <div class="new-section-tag">🆕 Apr 28–29 최신 업데이트</div>
+      <div class="new-section-title">S&P·나스닥 사상 최고 · 이익 역대급 상향 · AI 판도 재편</div>
+
+      <ul class="event-list">
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 28일</span><span class="event-title">S&P 500·나스닥, 연속 사상 최고치 경신</span></div>
+          <ul class="event-points">
+            <li>S&P 7,173 (+0.12%), 나스닥 24,887 (+0.20%). 4주 연속 주간 상승</li>
+            <li>80%+ 기업 이익 예상치 초과 (역사 평균 77%), 이익 서프라이즈 +12% (역사 평균 +7%)</li>
+            <li><strong>SocGen 분석:</strong> 12개월 선행 이익 전망 4개월간 $6,000억 상향 (+12%) — 경기 회복 후 제외 시 역사상 최대 상향폭</li>
+          </ul>
+          <div class="impact" style="--era-color:var(--era-new)">
+            <div class="impact-label">이익 급등의 구조</div>
+            <div class="impact-row">
+              <div class="impact-col">
+                <div class="impact-col-label">집중도 위험</div>
+                <ul>
+                  <li>2026 이익 상향의 <strong>43%가 반도체 단독</strong></li>
+                  <li>반도체+IT하드웨어+에너지 = 전체 상향의 <strong>98%</strong></li>
+                  <li>나머지 섹터는 사실상 기여 미미</li>
+                </ul>
+              </div>
+              <div class="impact-col">
+                <div class="impact-col-label">1999년 비교</div>
+                <ul>
+                  <li>SOX 4월 한 달 +50% = 닷컴 버블 말기 IT 서지와 유사</li>
+                  <li>LTCM(1998) → 그린스펀 인하 → 2000년 붕괴 패턴</li>
+                  <li>SpaceX·OpenAI IPO가 다음 단계 촉매 가능성</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 28일</span><span class="event-title">중국 산업이익 +15.8% — 유가 충격 속 제조업 호황</span></div>
+          <ul class="event-points">
+            <li>반도체·EV 배터리·산업용 로봇 중심 고부가 제조업 호황</li>
+            <li>최첨단 반도체 수입 +14%(물량), <strong>+54%(금액)</strong> — 대만·한국산 의존도 여전</li>
+            <li>중국 올해 수입 증가율 > 수출 증가율 전망 — 2021년 이후 처음</li>
+            <li>EV·태양광·재생에너지 자립으로 유가 충격 부분 완충</li>
+          </ul>
+          <div class="callout">
+            <div class="callout-icon">아시아 시장 분화</div>
+            <ul>
+              <li><strong>유가 충격 완충:</strong> 중국·한국·대만·일본 — AI 랠리 + 기술 제조 강점</li>
+              <li><strong>유가 직격:</strong> 인도·인도네시아·필리핀 — 연료비 급등으로 주가·통화 동반 하락</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 28일</span><span class="event-title">OpenAI-Microsoft 독점 계약 해제 — AI 생태계 지각변동</span></div>
+          <ul class="event-points">
+            <li>Microsoft의 OpenAI 모델 독점 판매권 종료 → OpenAI, Google·AWS·타 클라우드와 자유 협업 가능</li>
+            <li>반대급부: Microsoft, OpenAI에 매출 공유 중단. 2030년까지 수익 일부 공유(상한선 설정)</li>
+            <li>의미: OpenAI가 Microsoft 의존에서 독립 → 진정한 독립 AI 기업으로 IPO 경로 강화</li>
+          </ul>
+          <div class="chain">
+            <span class="nc-node">독점 해제</span><span class="nc-arrow">→</span>
+            <span class="nc-node good">OpenAI 독립성↑</span><span class="nc-arrow">+</span>
+            <span class="nc-node good">IPO 가치↑</span><span class="nc-arrow">+</span>
+            <span class="nc-node bad">MS 수익 모델 약화</span>
+          </div>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 28일</span><span class="event-title">중국, Meta의 Manus(AI 에이전트) $20억 인수 차단</span></div>
+          <ul class="event-points">
+            <li>중국 규제당국, 이미 진행 중이던 Meta의 Manus 인수 전격 차단</li>
+            <li>Manus: 다단계 작업 수행 AI 에이전트, 연간 구독 매출 $1억+ 돌파</li>
+            <li>Manus 핵심 임원 2명 출국 금지 조치</li>
+            <li>목적: <strong>중국산 AI 기술의 미국 이전 차단</strong> + 다른 중국 AI 기업의 해외 투자 유치 억제</li>
+            <li>향후 트럼프-시진핑 5월 정상회담 의제로 부상 가능성</li>
+          </ul>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 28일</span><span class="event-title">이란, 조건부 호르무즈 개방 제안 — 트럼프 거부</span></div>
+          <ul class="event-points">
+            <li>이란 제안: 호르무즈 개방 ↔ 미국 해상 봉쇄 해제 + 전쟁 종료 + 핵 협상 연기</li>
+            <li>트럼프 국가안보팀 검토 후 거부 — 핵 프로그램 포기가 여전히 핵심 요구</li>
+            <li>Brent 원유 $108/bbl — 봉쇄 이후 최고치 재근접</li>
+          </ul>
+          <div class="callout">
+            <div class="callout-icon">항공 섹터 직격</div>
+            <ul>
+              <li>제트연료 급등 → 항공사 요금 인상 + 노선 축소</li>
+              <li>Lufthansa 6개월간 2만 편 감축, Delta 분기 연료비 +$25억</li>
+              <li>EU 에너지 수입 의존도 → 스태그플레이션 압력 재부상</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 28일</span><span class="event-title">Intel 이익실현 신호 — "+285% 랠리 후 리스크-보상 역전"</span></div>
+          <ul class="event-points">
+            <li>Finimize 애널리스트(Reda Farran): "2024년 10월 $23에 매수 추천 → 현재 역대 최고 — 지금은 이익실현 적기"</li>
+            <li>고급 패키징 수요 확실, 정부 지원 지속이지만 <strong>PER 60배 과열 + 이미 대부분 반영</strong></li>
+            <li>교훈: 좋은 투자 아이디어도 "포지션 관리"가 필요 — 일부 이익 실현이 합리적</li>
+          </ul>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">4월 28일</span><span class="event-title">OpenAI, AI 스마트폰 개발 타진 — Qualcomm·MediaTek 접촉</span></div>
+          <ul class="event-points">
+            <li>ChatGPT 창업자, 반도체 2사와 AI 스마트폰 개발 논의 중</li>
+            <li>전략: 하드웨어 + 소프트웨어 통합 → 항상 켜진 AI 에이전트</li>
+            <li>2024년 Jony Ive의 AI 디바이스 스타트업 인수와 연결</li>
+            <li>Apple 위협 요인: Apple은 Google AI 의존하는 전략 채택 → 주가 올 들어 보합. 메모리 칩 가격 급등이 추가 리스크</li>
+          </ul>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">이번 주</span><span class="event-title">이번 주 빅이벤트 — 수요일 FOMC·빅테크 실적, 목요일 Apple·GDP</span></div>
+          <ul class="event-points">
+            <li><strong>수요일:</strong> Alphabet·Amazon·Meta·Microsoft 실적 + FOMC (파월 마지막 회의 가능성)</li>
+            <li><strong>목요일:</strong> Apple 실적 + Q1 GDP + ECB·BOE 결정</li>
+            <li>핵심 질문: AI CapEx 계속 늘릴 건가? 그 투자가 수익으로 돌아오고 있나?</li>
+            <li>Morgan Stanley 추산: Amazon 올해 FCF <strong>-$170억~-$280억</strong> 적자 가능성</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="conclusion-header">종합 결론 — Apr 29, 2026</div>
+  <ul class="event-list">
+    <li class="event"><div class="event-title">이익은 역대급 — 하지만 98%가 반도체·에너지 집중</div>
+      <ul class="event-points">
+        <li>광범위한 경기 호황이 아닌 AI 데이터센터 투자가 만든 특수 현상. 지속 가능성 물음표</li>
+        <li>1999년 닷컴 버블 말기와 구조적 유사성 — "멜트업 가능하지만 그 이후가 문제"</li>
+      </ul>
+    </li>
+    <li class="event"><div class="event-title">AI 생태계 재편 가속</div>
+      <ul class="event-points">
+        <li>OpenAI-MS 독점 해제 → OpenAI 독립. 중국의 Manus 차단 → 기술 전쟁 심화</li>
+        <li>승자 조건: 모델이 아닌 하드웨어+소프트웨어 통합 + 사용자 데이터 + 인프라</li>
+      </ul>
+    </li>
+    <li class="event"><div class="event-title">이번 주가 분수령</div>
+      <ul class="event-points">
+        <li>빅테크 4사 실적 + FOMC + Apple + GDP — 전부 48시간 안에</li>
+        <li>AI 수익화 진전 확인 vs 실망 → SOX PER 60배 정당화 여부 결정</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="chain" style="margin-top:14px;">
+    <span class="node">관세</span><span class="arrow">→</span>
+    <span class="node">AI 패권</span><span class="arrow">→</span>
+    <span class="node">달러 디지털화</span><span class="arrow">→</span>
+    <span class="node bad">이란 전쟁</span><span class="arrow">→</span>
+    <span class="node bad">에너지 충격</span><span class="arrow">→</span>
+    <span class="node good">이익 역대급</span><span class="arrow">→</span>
+    <span class="node" style="border-color:var(--era-new);color:var(--era-new);">이번 주 분수령</span>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Sources: Morning Brew, Finimize, Bloomberg, FactSet, SocGen, BCA Research — Updated April 29, 2026. 투자 조언 아님.</p>
+</div>
+</div>
+</div><!-- /tab-timeline -->
+
+
+<!-- ════════════════════════════════════════════
+     TAB 2: 데일리 뉴스
+════════════════════════════════════════════ -->
+<div class="page" id="tab-daily">
+<div class="daily-page-wrap">
+
+  <div class="daily-header">
+    <div class="daily-header-top">
+      <div>
+        <h1>📰 데일리 뉴스 업데이트</h1>
+        <p>매일 받는 뉴스레터 요약 — 날짜별로 쌓입니다</p>
+      </div>
+    </div>
+    <div class="daily-guide">
+      <strong>사용법:</strong> 항목 클릭 → 상세 내용 펼침 · 각 뉴스마다 <em>큰 그림 연결 포인트</em> 포함 · 매주 금요일 주간 요약 탭에 정리됩니다
+    </div>
+  </div>
+
+  <!-- ── Apr 29, 2026 ── -->
+  <div class="date-group">
+    <div class="date-group-header">
+      <div>
+        <div class="date-group-date">April 29, 2026</div>
+        <div class="date-group-day">Tuesday</div>
+      </div>
+      <div class="date-group-badge">🆕 오늘</div>
+    </div>
+
+    <!-- 1 -->
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Market</span>
+        <div class="news-title">S&P·나스닥 연속 사상 최고 — 이익 전망 역대급 상향, 1999년 유사성 경고</div>
+        <span class="news-source">Bloomberg / BCA</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">S&P 500과 나스닥이 연속 사상 최고치를 경신하는 가운데, SocGen은 12개월 선행 이익 전망이 4개월간 <strong>$6,000억 상향(+12%)</strong>됐다고 분석했다. 그러나 BCA Research는 이번 랠리가 1999년 닷컴 버블 말기와 구조적으로 유사하다고 경고했다.</div>
+        <ul class="news-points">
+          <li><strong>S&P 7,173 (+0.12%), 나스닥 24,887 (+0.20%)</strong> — 4주 연속 주간 상승</li>
+          <li>80%+ 기업 예상치 초과 (역사 평균 77%), 이익 서프라이즈 크기 +12% (역사 평균 +7%)</li>
+          <li>집중도 위험: 이익 상향의 <strong>43%가 반도체 단독</strong>, 반도체+IT+에너지 = 98%</li>
+          <li>1999년 유사점: LTCM 구제(1998) → 그린스펀 인하 → 멜트업 → 2000년 붕괴. 지금은 이란 휴전 기대 → SOX +50%</li>
+          <li>이익 성장 사이클 5년째 — 역사적으로 이 수준의 마진 확대가 지속된 사례 없음</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p><strong>낙관론:</strong> AI 데이터센터 투자가 실제 이익으로 전환되고 있다는 증거. <strong>경계론:</strong> 98%가 특정 섹터 집중 — 반도체 실망 시 전체 시장 조정 촉발 가능. 이번 주 수요일 빅테크 4사 실적이 이 밸류에이션을 정당화하는지 확인하는 자리.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-trade">Trade</span>
+        <div class="news-title">중국 산업이익 +15.8% — 유가 충격 속 반도체·EV·로봇 호황</div>
+        <span class="news-source">Finimize</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">중국 3월 산업이익이 전년比 <strong>+15.8%</strong> 급증, 4년간의 침체를 마감했다. 정부 부양책(세금 감면·공공사업·저리 대출)과 글로벌 AI 인프라 투자 수혜가 핵심 동력이다.</div>
+        <ul class="news-points">
+          <li>최첨단 반도체 수입: 물량 +14%, 가치 <strong>+54%</strong> — AI 투자를 위한 대만·한국산 칩 수요 급증</li>
+          <li>올해 수입 증가율 > 수출 증가율 전망 — 2021년 이후 처음. "세계 공장"에서 "세계 소비자"로</li>
+          <li>EV·태양광 자립이 유가 완충 역할 — 중국의 "에너지 독립" 전략 효과</li>
+          <li>아시아 분화: 중국·한국·대만·일본 = AI 수혜 / 인도·인도네시아·필리핀 = 유가 직격</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>미-중 기술 디커플링 전략에도 불구하고 중국은 최첨단 반도체를 <strong>대만·한국에서 수입</strong>하며 AI 경쟁에 참여 중. 중국의 EV·재생에너지 자립은 유가 충격에 대한 구조적 방어막 — 인도 등 화석연료 의존국과 명확한 격차.</p>
+          <div class="news-chain">
+            <span class="nc-node">중국 AI 투자↑</span><span class="nc-arrow">→</span>
+            <span class="nc-node">첨단 반도체 수입↑</span><span class="nc-arrow">→</span>
+            <span class="nc-node good">대만·한국 수혜</span><span class="nc-arrow">→</span>
+            <span class="nc-node bad">미국 디커플링 목표 복잡화</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI</span>
+        <div class="news-title">OpenAI-Microsoft 독점 해제 — OpenAI, 경쟁 클라우드와 자유 협업 가능</div>
+        <span class="news-source">Morning Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Microsoft의 OpenAI 모델 독점 판매권이 종료됐다. OpenAI는 이제 Google Cloud, AWS 등 경쟁사와 자유롭게 협업할 수 있다. 반대급부로 Microsoft는 OpenAI에 대한 매출 공유를 중단하고, 수익 공유는 2030년까지 상한선을 두는 방식으로 재구조화된다.</div>
+        <ul class="news-points">
+          <li>OpenAI 입장: 수익 모델 다각화 + 클라우드 경쟁 레버리지 확보</li>
+          <li>Microsoft 입장: 단기 수익 감소 vs 장기 Azure 고객 확보 유지</li>
+          <li>IPO 의미: OpenAI가 특정 파트너 의존에서 독립 → 기업가치 극대화 가능</li>
+          <li>Musk-Altman 재판과 겹치며 OpenAI의 "영리 기업화" 가속 신호</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>AI 생태계 권력 이동. Microsoft가 OpenAI를 통해 쌓아온 AI 독점 포지션이 흔들리기 시작. Google·Amazon이 각각 Anthropic에 수십억 달러를 투자한 것과 맞물려 <strong>AI 클라우드 3파전</strong>이 본격화된다. 순환 투자 구조에서 다자 경쟁 구조로 전환.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-trade">Trade · AI</span>
+        <div class="news-title">중국, Meta의 Manus 인수 차단 — AI 기술 유출 방지 + 해외 유치 억제</div>
+        <span class="news-source">Morning Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">중국 규제당국이 Meta의 AI 에이전트 스타트업 Manus 인수($20억)를 전격 차단했다. Manus는 싱가포르로 이전한 중국 창업 기업. 핵심 임원 2명에게 출국 금지 조치까지 내렸다.</div>
+        <ul class="news-points">
+          <li>Manus: 다단계 AI 에이전트 — 리서치·데이터 분석·복잡한 작업 자동화. 연간 구독 $1억+ 돌파</li>
+          <li>차단 목적: 중국 AI 기술이 미국 기업 손에 들어가는 것 방지</li>
+          <li>부작용: 중국 AI 스타트업들의 해외 투자 유치 위축 신호</li>
+          <li>5월 트럼프-시진핑 정상회담에서 협상 카드로 사용될 가능성</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>AI 기술 전쟁이 M&A 차원으로 확대. 미국이 중국 AI 칩 수출을 막는 것처럼, 중국도 자국 AI 기업의 기술이 미국에 이전되는 것을 막기 시작. <strong>AI = 국가 전략 자산</strong>이라는 인식이 양국 모두에서 강화.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">War</span>
+        <div class="news-title">이란, 조건부 호르무즈 개방 제안 — 트럼프 거부. Brent $108</div>
+        <span class="news-source">Morning Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">이란이 처음으로 호르무즈 해협 개방 의사를 밝혔다. 조건: 미국의 해상 봉쇄 해제 + 전쟁 중단 + 핵 협상 연기. 트럼프 국가안보팀이 검토했으나 핵 프로그램 포기 요구 때문에 거부. Brent 원유 $108로 재급등.</div>
+        <ul class="news-points">
+          <li>이란 입장: 봉쇄 해제 선행 없이는 핵 협상 논의 불가</li>
+          <li>미국 입장: 핵 포기 없이는 봉쇄 해제 불가 — 완전한 교착</li>
+          <li>제트연료 급등 → 항공사 비상: Lufthansa 2만 편 감축, Delta +$25억 연료비</li>
+          <li>Polymarket: 5월 말 호르무즈 완전 개방 가능성 거의 0%</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>"조건부 제안"이 나왔다는 것 자체가 협상의 진전이지만, 조건 간격이 너무 크다. 시장은 "이란이 협상 의지를 보였다"는 데 반응해 소폭 안도했지만, 실질적 해결 없이 유가는 $100+ 구간 지속. 12월 원유 선물 $80+ — 시장이 "연내 해결 없음"에 베팅 중.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI · Tech</span>
+        <div class="news-title">OpenAI, AI 스마트폰 개발 타진 — Qualcomm·MediaTek 접촉, Jony Ive 연결</div>
+        <span class="news-source">Finimize</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">OpenAI가 Qualcomm(미국)과 MediaTek(대만) 두 반도체 기업과 AI 스마트폰 개발을 논의 중이라는 보도가 나왔다. OpenAI는 2024년 Apple 전설적 디자이너 Jony Ive의 AI 디바이스 스타트업을 인수한 바 있다.</div>
+        <ul class="news-points">
+          <li>목표: 하드웨어+소프트웨어 통합 → "항상 켜진 AI 에이전트" 기기</li>
+          <li>앱 전환 없이 자연어로 모든 작업 — 새로운 컴퓨팅 패러다임 시도</li>
+          <li>Apple 위협: Apple은 Google AI 의존 전략 → 올해 주가 보합. 메모리 칩 가격 급등이 추가 리스크. 이번 주 목요일 실적 주목</li>
+          <li>Qualcomm·MediaTek 모두 스마트폰 AP(애플리케이션 프로세서) 강자 — AI 기기 시대 수혜 기대</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>Apple이 "AI 디바이스 회사" 전략에서 뒤처지고 있다는 시장의 우려가 구체화되는 사례. OpenAI가 Qualcomm·MediaTek과 손잡으면 <strong>Apple의 하드웨어 독점</strong>에 도전하는 새로운 생태계가 형성될 수 있다. 승자 조건: 하드웨어+소프트웨어 통합 + 사용자 데이터.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Market · Tech</span>
+        <div class="news-title">Intel 이익실현 신호 — "+285% 후 리스크-보상 역전"</div>
+        <span class="news-source">Finimize — Reda Farran CFA</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Finimize 포트폴리오에 Intel을 추가한 Reda Farran 애널리스트가 "지금은 이익실현 적기"라는 리서치를 발표했다. 2024년 10월 $23에 매수 추천 이후 285% 상승, 역대 최고치 달성.</div>
+        <ul class="news-points">
+          <li>여전히 긍정적인 것: 고급 패키징 수요 확실, 정부 지원 지속, AI CPU 전환 테마 유효</li>
+          <li>이익실현 이유: PER 60배 과열, 대부분의 좋은 소식이 이미 가격에 반영, 리스크-보상 역전</li>
+          <li>투자 교훈: "좋은 아이디어"와 "지금 사야 할 주식"은 다르다. 포지션 관리가 투자의 절반</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>SOX 지수 전체가 PER 60배 과열 수준. Intel 단독이 아니라 <strong>반도체 섹터 전체의 이익실현 신호</strong>일 수 있다. 이번 주 빅테크 실적이 기대에 못 미치면 SOX 조정의 방아쇠가 될 수 있음. "삽을 파는 회사"에서 "과열된 삽 회사"로의 전환점.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /date-group Apr 29 -->
+
+  <!-- ── Apr 28, 2026 ── -->
+  <div class="date-group">
+    <div class="date-group-header">
+      <div>
+        <div class="date-group-date">April 28, 2026</div>
+        <div class="date-group-day">Monday</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI · Legal</span>
+        <div class="news-title">Musk vs. Altman 재판 시작 — 배심원 선정 완료, 오늘 모두진술</div>
+        <span class="news-source">Morning Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">캘리포니아 법원에서 Elon Musk vs OpenAI·Sam Altman 재판이 시작됐다. Musk는 OpenAI가 비영리 약속을 어기고 영리 전환했다며 $100B+ 손해배상과 Altman·Brockman 해임을 요구한다.</div>
+        <ul class="news-points">
+          <li>Musk 측: "OpenAI가 안전한 AI 개발을 약속하며 기부금을 조작해 받아갔다"</li>
+          <li>OpenAI 측: "경쟁사 설립 후 시장을 방해하려는 동기에서 비롯된 소송"</li>
+          <li>증인 예정: Musk·Altman·Brockman·Satya Nadella — 빅테크 내막 폭로 가능성</li>
+          <li>책임 단계 5월 21일 마무리 예정</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>Musk 승리 시 OpenAI IPO 차질, xAI 반사 수혜. Altman 승리 시 OpenAI 영리 전환 확정, IPO 가속. AI 산업의 미래 구조를 결정할 수 있는 재판.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Market</span>
+        <div class="news-title">이번 주 캘린더 — 5대 빅테크 실적 + FOMC + ECB·BOE + Q1 GDP</div>
+        <span class="news-source">Finimize "The Whole Enchilada"</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">이번 주는 "연중 가장 큰 주". 5개 Magnificent 7 기업 실적 + 4개 주요 중앙은행 결정이 48시간 안에 쏟아진다.</div>
+        <ul class="news-points">
+          <li><strong>수요일:</strong> Alphabet·Amazon·Meta·Microsoft 실적 + FOMC 결정</li>
+          <li><strong>목요일:</strong> Apple 실적 + Q1 GDP + 개인소비지출(PCE) + ECB + BOE</li>
+          <li>핵심 긴장 1: "AI CapEx가 수익으로 돌아오기 시작했나?" — 수백억 달러 정당화 여부</li>
+          <li>핵심 긴장 2: "인플레가 금리 인하에서 인상으로 방향 바꾸나?" — JPMorgan: 다음 움직임이 2027년 인상 가능성</li>
+          <li>하이퍼스케일러 4사 합산 올해 데이터센터 투자 <strong>~$7,000억</strong></li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>두 가지 모두 시장을 흔들 수 있다. CapEx 감소 신호 → 반도체 급락. 인플레·금리 인상 신호 → 성장주 급락. 반대로 CapEx 유지 + 온건한 파월 → 랠리 계속.</p>
+        </div>
+      </div>
+    </div>
+  </div><!-- /date-group Apr 28 -->
+
+</div><!-- /daily-page-wrap -->
+</div><!-- /tab-daily -->
+
+
+<!-- ════════════════════════════════════════════
+     TAB 3: 주간 요약
+════════════════════════════════════════════ -->
+<div class="page" id="tab-weekly">
+<div class="weekly-page-wrap">
+
+  <div style="margin-bottom:24px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);margin-bottom:6px;">📋 주간 요약</h2>
+    <p style="font-size:13px;color:var(--ink-muted);">매주 금요일 데일리 뉴스를 정리해 타임라인에 NEW로 추가합니다</p>
+  </div>
+
+  <!-- Apr 4주차 — 진행 중 -->
+  <div class="week-block">
+    <div class="week-block-header">
+      <div class="week-block-title">2026년 4월 4주차 (Apr 28–May 2)</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="week-block-date">진행 중</span>
+        <span class="week-new-badge">🔴 LIVE</span>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-themes">
+        <span class="week-theme-tag">📈 빅테크 실적</span>
+        <span class="week-theme-tag">🏛️ FOMC</span>
+        <span class="week-theme-tag">⛽ 이란 협상</span>
+        <span class="week-theme-tag">🤖 AI 재편</span>
+        <span class="week-theme-tag">🇨🇳 중국 호황</span>
+      </div>
+
+      <div class="week-section-title">이번 주 핵심 사건 (확인된 것)</div>
+      <ul class="week-points">
+        <li><strong>S&P·나스닥 연속 사상 최고치</strong> — 이익 전망 4개월간 +12%, 역대급 상향</li>
+        <li><strong>중국 산업이익 +15.8%</strong> — 반도체·EV·로봇 중심. 최첨단 반도체 수입 가치 +54%</li>
+        <li><strong>OpenAI-Microsoft 독점 해제</strong> — AI 클라우드 3파전 본격화</li>
+        <li><strong>중국, Meta의 Manus 인수 차단</strong> — AI 기술 전쟁 M&A로 확전</li>
+        <li><strong>이란 조건부 제안 → 트럼프 거부</strong> — Brent $108, 항공 직격 지속</li>
+        <li><strong>Intel 이익실현 신호</strong> — PER 60배 과열, 리스크-보상 역전</li>
+        <li><strong>Musk vs Altman 재판 개시</strong></li>
+      </ul>
+
+      <div class="week-section-title">이번 주 남은 이벤트</div>
+      <ul class="week-points">
+        <li><strong>수요일:</strong> Alphabet·Amazon·Meta·Microsoft 실적 + FOMC (파월 마지막?)</li>
+        <li><strong>목요일:</strong> Apple 실적 + Q1 GDP + PCE + ECB + BOE</li>
+        <li><strong>금요일:</strong> Chevron·ExxonMobil 실적. 주간 총정리 예정</li>
+      </ul>
+
+      <div class="week-outlook">
+        <strong>이번 주 핵심 질문:</strong> AI CapEx $7,000억이 수익으로 전환되고 있나? 파월의 마지막 FOMC 메시지는? 이란 협상 다음 단계는?<br>
+        <div class="week-watchlist" style="margin-top:10px;">
+          <span class="watch-item">MSFT 실적</span>
+          <span class="watch-item">GOOGL 실적</span>
+          <span class="watch-item">META 실적</span>
+          <span class="watch-item">AMZN 실적</span>
+          <span class="watch-item">FOMC</span>
+          <span class="watch-item">AAPL 실적</span>
+          <span class="watch-item">Q1 GDP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apr 3주차 — 완료 -->
+  <div class="week-block">
+    <div class="week-block-header">
+      <div class="week-block-title">2026년 4월 3주차 (Apr 21–25)</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="week-block-date">Apr 25 완료</span>
+        <span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:var(--era-now);color:white;">✓ 완료</span>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-themes">
+        <span class="week-theme-tag">⚖️ 연준 체제</span>
+        <span class="week-theme-tag">💻 Intel 폭발</span>
+        <span class="week-theme-tag">⛽ 이란 교착</span>
+        <span class="week-theme-tag">🏛️ Warsh 인준</span>
+      </div>
+
+      <div class="week-section-title">핵심 사건</div>
+      <ul class="week-points">
+        <li><strong>Intel Q1 실적 폭발</strong> — 매출 $13.6B (+7.2%), EPS $0.29 (예상의 29배). SOX 18거래일 연속 상승 (+47%)</li>
+        <li><strong>DOJ 파월 수사 종료</strong> → Tillis "Warsh 인준 지지". 파월 5월 15일 임기 종료</li>
+        <li><strong>이란 2차 협상 완전 무산</strong> — 트럼프 Truth Social: "We have all the cards!"</li>
+        <li><strong>Musk vs Altman 재판</strong> 배심원 선정 시작</li>
+      </ul>
+
+      <div class="week-section-title">주요 시장 데이터</div>
+      <ul class="week-points">
+        <li>S&P 500: 7,165 (+0.80%), 나스닥: 24,836 (+1.63%), 10년물: 4.31%</li>
+        <li>Intel +23.6% 단일일 최대 상승 (1987년 이후). AMD +13.9%, ARM +14.8%</li>
+        <li>Bitcoin $77,600 (-0.39%), Brent Oil $94.72 (-1.18%)</li>
+      </ul>
+
+      <div class="week-section-title">큰 그림 의미</div>
+      <ul class="week-points">
+        <li>Intel 실적 = AI 추론·에이전트 단계에서 <strong>CPU 수요 폭증 구조적 확인</strong></li>
+        <li>Warsh 체제 → QT 선호 → 장기채 금리 상승 압력 지속 예상</li>
+        <li>이란 교착 장기화 → 항공·에너지 2차 충격 가시화 중</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <h3>이전 주차 기록</h3>
+    <p>데일리 뉴스가 쌓이면 자동으로 여기에 추가됩니다.<br>매주 금요일 해당 주 뉴스를 복붙해주시면 주간 요약으로 정리해드립니다.</p>
+  </div>
+
+</div>
+</div><!-- /tab-weekly -->
+
+
+<!-- ════════════════════════════════════════════
+     TAB 4: 월간 요약
+════════════════════════════════════════════ -->
+<div class="page" id="tab-monthly">
+<div class="monthly-page-wrap">
+
+  <div style="margin-bottom:24px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);margin-bottom:6px;">📆 월간 요약</h2>
+    <p style="font-size:13px;color:var(--ink-muted);">한 달이 지나면 그달의 주요 흐름을 요약합니다. 분기가 끝나면 타임라인 큰 그림에 편입됩니다.</p>
+  </div>
+
+  <!-- April 2026 — 진행 중 -->
+  <div class="month-block">
+    <div class="month-header">
+      <div class="month-title">April 2026 <span class="month-in-progress">진행 중</span></div>
+      <div class="month-subtitle">전쟁 교착 속 이익 역대급 + AI 생태계 재편 + 연준 체제 전환</div>
+    </div>
+    <div class="month-body">
+      <div class="month-kpi-row">
+        <div class="month-kpi">
+          <div class="month-kpi-label">S&P 500</div>
+          <div class="month-kpi-value">7,173</div>
+          <div class="month-kpi-note">사상 최고. 4주 연속 상승</div>
+        </div>
+        <div class="month-kpi">
+          <div class="month-kpi-label">SOX 지수</div>
+          <div class="month-kpi-value">+50%</div>
+          <div class="month-kpi-note">4월 한 달. 18일 연속 상승</div>
+        </div>
+        <div class="month-kpi">
+          <div class="month-kpi-label">Brent 유가</div>
+          <div class="month-kpi-value">$108</div>
+          <div class="month-kpi-note">호르무즈 봉쇄 지속</div>
+        </div>
+        <div class="month-kpi">
+          <div class="month-kpi-label">이익 전망</div>
+          <div class="month-kpi-value">+12%</div>
+          <div class="month-kpi-note">4개월간 $6,000억 상향</div>
+        </div>
+      </div>
+
+      <div class="theme-grid">
+        <div class="theme-block">
+          <div class="theme-block-title" style="color:var(--era-war)">⛽ 이란 전쟁</div>
+          <ul>
+            <li>파키스탄 1·2차 협상 모두 무산</li>
+            <li>이란 조건부 개방 제안 → 트럼프 거부</li>
+            <li>호르무즈 봉쇄 지속, 5월 말까지 개방 가능성 0%</li>
+            <li><strong>항공 직격:</strong> Lufthansa 2만 편 감축</li>
+          </ul>
+        </div>
+        <div class="theme-block">
+          <div class="theme-block-title" style="color:var(--era-tech)">🤖 AI 재편</div>
+          <ul>
+            <li>Intel CPU 시대 도래 확인 (+23.6%)</li>
+            <li>OpenAI-Microsoft 독점 해제</li>
+            <li>중국, Meta-Manus 인수 차단</li>
+            <li>OpenAI AI 스마트폰 개발 타진</li>
+            <li>Musk vs Altman 세기의 재판 시작</li>
+          </ul>
+        </div>
+        <div class="theme-block">
+          <div class="theme-block-title" style="color:var(--era-dollar)">🏛️ 연준 전환</div>
+          <ul>
+            <li>DOJ 파월 수사 종료</li>
+            <li>Warsh 인준 확실시 (QT 선호)</li>
+            <li>파월 5월 15일 임기 종료</li>
+            <li>이번 주 수요일 마지막 FOMC 가능성</li>
+          </ul>
+        </div>
+        <div class="theme-block">
+          <div class="theme-block-title" style="color:var(--era-now)">📈 시장</div>
+          <ul>
+            <li>S&P·나스닥 연속 사상 최고</li>
+            <li>이익 서프라이즈 역대급 — 98%가 반도체+에너지</li>
+            <li>중국 산업이익 +15.8% (4년 만에 턴어라운드)</li>
+            <li>1999년 유사성 경고 부상</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:var(--ink);color:white;padding:14px 16px;border-radius:4px;font-size:13px;line-height:1.75;">
+        <strong style="color:#fcd34d;">4월 종합:</strong> 전쟁은 계속되는데 시장은 오히려 상승. 이익이 역대급으로 좋지만 98%가 특정 섹터 집중. AI 생태계가 독점에서 경쟁으로 전환. 연준 체제 교체로 긴축 신호. <strong style="color:#fcd34d;">5월 최대 변수:</strong> 빅테크 실적 + 파월 퇴장 + 이란 협상 + 트럼프-시진핑 정상회담.
+      </div>
+    </div>
+  </div>
+
+  <!-- March 2026 — 완료 -->
+  <div class="month-block">
+    <div class="month-header">
+      <div class="month-title">March 2026</div>
+      <div class="month-subtitle">미-이란 전쟁 발발 — 에너지 충격의 시작</div>
+    </div>
+    <div class="month-body">
+      <div class="month-kpi-row">
+        <div class="month-kpi">
+          <div class="month-kpi-label">유가 변화</div>
+          <div class="month-kpi-value">$80→$100</div>
+          <div class="month-kpi-note">호르무즈 봉쇄 직후</div>
+        </div>
+        <div class="month-kpi">
+          <div class="month-kpi-label">알루미늄</div>
+          <div class="month-kpi-value">4년 최고</div>
+          <div class="month-kpi-note">이란 생산시설 공격</div>
+        </div>
+        <div class="month-kpi">
+          <div class="month-kpi-label">시장 반응</div>
+          <div class="month-kpi-value">혼조</div>
+          <div class="month-kpi-note">전쟁에도 지수 버팀</div>
+        </div>
+        <div class="month-kpi">
+          <div class="month-kpi-label">협상</div>
+          <div class="month-kpi-value">교착</div>
+          <div class="month-kpi-note">파키스탄 중재 시작</div>
+        </div>
+      </div>
+      <ul class="week-points">
+        <li>미-이스라엘 이란 핵·군사 시설 타격 → 이란 호르무즈 즉각 봉쇄</li>
+        <li>에너지 충격 1차: 유가 $100 돌파, 알루미늄 4년 최고 (Alcoa +8.2%)</li>
+        <li>방산주 예상외 부진 — 이란 드론 전술로 "전통 방산 수혜" 재평가</li>
+        <li>시장 버팀 이유: 기업 이익 전망 양호 + "협상 타결 기대" 지속</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <h3>2025년 하반기 ~ 2026년 2월</h3>
+    <p>해당 기간 월간 요약은 타임라인 탭에서 확인하세요.<br>앞으로 매월 말 주요 뉴스를 복붙해주시면 월간 요약을 정리해드립니다.</p>
+  </div>
+
+</div>
+</div><!-- /tab-monthly -->
+
+<script>
+/* Tab switching */
+function switchTab(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* Daily news accordion */
+function toggleNews(header) {
+  const body = header.nextElementSibling;
+  const icon = header.querySelector('.news-expand');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (icon) icon.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
