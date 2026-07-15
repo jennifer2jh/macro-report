@@ -351,16 +351,16 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
 <nav class="top-nav">
   <div class="top-nav-title">📊 Global Macro</div>
   <div class="top-nav-tabs">
-    <div class="tab-btn active" style="--tab-color:#d8d3cb" onclick="switchTab('timeline',this)">🗺 타임라인</div>
-    <div class="tab-btn" style="--tab-color:var(--daily)" onclick="switchTab('daily',this)">📰 데일리 뉴스</div>
-    <div class="tab-btn" style="--tab-color:var(--weekly)" onclick="switchTab('weekly',this)">📋 주간 요약</div>
-    <div class="tab-btn" style="--tab-color:var(--monthly)" onclick="switchTab('monthly',this)">📆 월간 요약</div>
-    <div class="tab-btn" style="--tab-color:var(--era-now,#b45309)" onclick="switchTab('quarterly',this)">📊 분기 요약</div>
-    <div class="tab-btn" style="--tab-color:#0284c7;border-left:1px solid rgba(255,255,255,0.12)" onclick="switchTab('en-timeline',this)">🌐 Timeline</div>
+    <div class="tab-btn active" style="--tab-color:#0284c7" onclick="switchTab('en-timeline',this)">🗺 Timeline</div>
     <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-daily',this)">📰 Daily News</div>
     <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-weekly',this)">📋 Weekly</div>
     <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-monthly',this)">📆 Monthly</div>
     <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-quarterly',this)">📊 Quarterly Summary</div>
+    <div class="tab-btn" style="--tab-color:#d8d3cb;border-left:1px solid rgba(255,255,255,0.12)" onclick="switchTab('timeline',this)">🌐 타임라인</div>
+    <div class="tab-btn" style="--tab-color:var(--daily)" onclick="switchTab('daily',this)">📰 데일리 뉴스</div>
+    <div class="tab-btn" style="--tab-color:var(--weekly)" onclick="switchTab('weekly',this)">📋 주간 요약</div>
+    <div class="tab-btn" style="--tab-color:var(--monthly)" onclick="switchTab('monthly',this)">📆 월간 요약</div>
+    <div class="tab-btn" style="--tab-color:var(--era-now,#b45309)" onclick="switchTab('quarterly',this)">📊 분기 요약</div>
   </div>
 </nav>
 
@@ -368,7 +368,7 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
 <!-- ════════════════════════════════════════════
      TAB 1: 타임라인 (기존 보고서)
 ════════════════════════════════════════════ -->
-<div class="page active" id="tab-timeline">
+<div class="page" id="tab-timeline">
 <div class="page-wrap">
 
 <div class="masthead">
@@ -4717,7 +4717,7 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
 <!-- ════════════════════════════════════════════
      ENGLISH TAB 1: TIMELINE
 ════════════════════════════════════════════ -->
-<div class="page" id="tab-en-timeline">
+<div class="page active" id="tab-en-timeline">
 <div class="page-wrap">
 
 <div class="masthead">
