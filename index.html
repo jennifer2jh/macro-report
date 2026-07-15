@@ -304,6 +304,21 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
 .month-kpi-note{font-size:10.5px;color:var(--ink-muted);margin-top:1px;line-height:1.4;}
 
 .theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.q-page-wrap{max-width:900px;margin:0 auto;padding:36px 40px 100px;}
+.q-block{border:1px solid var(--rule);background:var(--paper);margin-bottom:26px;}
+.q-header{padding:14px 18px;border-bottom:1px solid var(--rule);background:linear-gradient(90deg,rgba(0,0,0,0.03),transparent);}
+.q-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--ink);margin-bottom:4px;}
+.q-subtitle{font-size:12.5px;color:var(--ink-muted);line-height:1.5;}
+.q-body{padding:16px 18px 18px;}
+.q-sector{border-top:1px solid var(--rule);padding:14px 0 4px;}
+.q-sector:first-child{border-top:none;padding-top:2px;}
+.q-sector-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.q-sector ul{margin:0 0 6px 16px;padding:0;}
+.q-sector li{font-size:13px;line-height:1.65;color:var(--ink);margin-bottom:5px;}
+.q-why{background:rgba(0,0,0,0.03);border-left:2px solid var(--ink-faint);padding:8px 12px;margin:8px 0 4px;}
+.q-why-label{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;}
+.q-why p{font-size:12.5px;line-height:1.6;color:var(--ink-muted);margin:0;}
+@media(max-width:640px){.q-page-wrap{padding:24px 16px 72px;}.q-title{font-size:20px;}}
 .theme-block{border:1px solid var(--rule);border-radius:4px;padding:12px 14px;}
 .theme-block-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--rule);}
 .theme-block ul{list-style:none;padding:0;}
@@ -340,10 +355,12 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
     <div class="tab-btn" style="--tab-color:var(--daily)" onclick="switchTab('daily',this)">📰 데일리 뉴스</div>
     <div class="tab-btn" style="--tab-color:var(--weekly)" onclick="switchTab('weekly',this)">📋 주간 요약</div>
     <div class="tab-btn" style="--tab-color:var(--monthly)" onclick="switchTab('monthly',this)">📆 월간 요약</div>
+    <div class="tab-btn" style="--tab-color:var(--era-now,#b45309)" onclick="switchTab('quarterly',this)">📊 분기 요약</div>
     <div class="tab-btn" style="--tab-color:#0284c7;border-left:1px solid rgba(255,255,255,0.12)" onclick="switchTab('en-timeline',this)">🌐 Timeline</div>
     <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-daily',this)">📰 Daily News</div>
     <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-weekly',this)">📋 Weekly</div>
     <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-monthly',this)">📆 Monthly</div>
+    <div class="tab-btn" style="--tab-color:#0284c7" onclick="switchTab('en-quarterly',this)">📊 Quarterly Summary</div>
   </div>
 </nav>
 
@@ -676,6 +693,22 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
     </div>
   </div>
 
+  </div>
+
+<!-- ERA 7: 2026 Q2 -> Q3 — 최신 -->
+<div style="--era-color:var(--era-now)">
+  <div class="era-inner">
+    <div class="era-header">
+      <div>
+        <div class="era-date">2026년 5–7월</div>
+        <div class="era-date-sub">진행 중 🆕</div>
+      </div>
+      <div>
+        <div class="era-tag">Fed · Geopolitics · AI · Markets</div>
+        <div class="era-title">휴전 랠리의 정점과 붕괴 — Warsh 시대, 사상 최대 IPO, 그리고 되돌림</div>
+      </div>
+    </div>
+
     <div class="new-section-box">
       <div class="new-section-tag">🆕 May 1 최신 업데이트</div>
       <div class="new-section-title">빅테크 실적 공개 · 파월 퇴장 · 유가 $120 · Musk 법정 증언</div>
@@ -762,21 +795,6 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
       </ul>
     </div>
 
-  </div>
-
-<!-- ERA 7: 2026 Q2 -> Q3 — 최신 -->
-<div style="--era-color:var(--era-now)">
-  <div class="era-inner">
-    <div class="era-header">
-      <div>
-        <div class="era-date">2026년 5–7월</div>
-        <div class="era-date-sub">진행 중 🆕</div>
-      </div>
-      <div>
-        <div class="era-tag">Fed · Geopolitics · AI · Markets</div>
-        <div class="era-title">휴전 랠리의 정점과 붕괴 — Warsh 시대, 사상 최대 IPO, 그리고 되돌림</div>
-      </div>
-    </div>
     <ul class="event-list">
       <li class="event"><div class="event-header"><span class="event-date">5월 15일</span><span class="event-title">Warsh 연준 시대 개막</span></div>
         <ul class="event-points"><li>상원 54–45 역대 최소 표차 인준. 파월은 이사로 잔류하며 내부 견제 — CPI 3.8%·PPI 6%가 첫 숙제</li></ul>
@@ -797,6 +815,7 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         <ul class="event-points"><li>한국 증시 고점 대비 -20% 약세장 진입(7/8). 트럼프 "휴전은 끝났다" 선언, Brent 재급등(7/9). "AI가 없었던 것처럼" 대형주 조정</li></ul>
       </li>
     </ul>
+
   </div>
 </div>
 
@@ -909,6 +928,26 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         </ul>
       </div>
     </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Geopolitics / Endgame</span>
+        <div class="news-title">(7/9) Authers "'오해각서'의 오차범위" — 휴전이라 불린 것은 애초에 합의가 아니었다</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">트럼프가 <strong>"이란과의 휴전은 끝났다"</strong>고 선언하고 Brent가 급등했다. Authers는 이 사태에 잔인한 이름을 붙인다 — <strong>'양해각서(Memorandum of Understanding)'가 아니라 '오해각서(Memorandum of Misunderstanding)'</strong>였고, 문제는 그 <strong>오차범위</strong>였다는 것. 양측이 서로 다른 것에 서명했다고 믿었다면, 파기는 시간문제였을 뿐이다.</div>
+        <ul class="news-points">
+          <li>시장의 오독: 6/29 휴전을 '해결'로 값을 매겼지만, 실제로는 <strong>모호함을 남긴 문서</strong>였다. 그 모호함의 오차범위 안에 7/9의 파국이 처음부터 들어 있었음</li>
+          <li>결과: 2월 27일 개전 이후 4개월 반, <strong>호르무즈는 여전히 미해결</strong>이고 유가는 다시 상방. "평화 → 인플레 완화 → 완화 기대"의 사슬이 통째로 역전</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>보고서의 종착점. <strong>7/8 한국 −20% + 7/9 휴전 파기·Brent 급등</strong>이 겹치며, 상반기를 지배한 두 서사(AI 무한상승·평화 임박)가 이틀 만에 함께 꺾였다. "인하를 기대하던 시장이 인상을 두려워하게 된" 반년의 결말.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── Jul 8, 2026 ── -->
@@ -952,6 +991,26 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         <div class="news-summary">Tech Brew가 Meta의 새 데이터·감시 관련 행보를 조지 오웰의 '1984'에 빗대 비판적으로 다뤘다. AI 학습 데이터 확보 경쟁이 프라이버시 규제 리스크로 번지는 흐름.</div>
       </div>
     </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Iran / Oil</span>
+        <div class="news-title">(7/8) "이란은 우쭐대는 걸 참지 못하고, 유가는 오른다" — 미국, 새 공습 물결 개시</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">한국 증시가 약세장에 진입한 바로 그날, 지정학도 무너졌다. <strong>미국이 이란에 새로운 공습 물결을 시작</strong>했다. 일주일 전 합의된 휴전이 이미 흔들린 것. Authers의 진단: 이란이 <strong>"수로를 우리가 통제한다"는 우쭐댐을 참지 못한 것</strong>이 재격화의 방아쇠였고, 유가는 다시 올랐다.</div>
+        <ul class="news-points">
+          <li>6/29 휴전 → 7/8 공습 재개: <strong>열흘 만에 '평화 프리미엄'이 소멸</strong>. 시장이 "휴전 너머"를 보며 매겨둔 값이 통째로 되돌려짐</li>
+          <li>타이밍의 잔인함: 코스피가 이미 과잉 레버리지로 무너지는 중에 <strong>유가 상승 = 인플레 재점화 = Fed 인하 불가</strong>가 겹침 — 완충장치가 하나도 없는 상태</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>6월의 "AI가 전쟁을 가린다"는 가림막이 걷히는 순간. AI(한국)와 전쟁(이란)이 <strong>같은 날 동시에</strong> 무너졌다.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── Jul 6–7, 2026 ── -->
@@ -976,6 +1035,29 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
           <li>삼성 실망 매물 → 다음날(7/8) 한국 약세장 진입의 방아쇠</li>
           <li>Amazon 채권 발행: Alphabet 신주발행(6월)·Nvidia 차입(6월)에 이은 "AI CapEx 자금조달 러시"의 연장</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI Economics</span>
+        <div class="news-title">(7/7) Authers "토큰으로 본 AI 붐 — 수면 아래에서 문제가 끓고 있다": 수직 상승의 시기는 끝났다</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">긴 연휴 뒤 반도체주는 반등했다(삼성 이익 <strong>19배 증가</strong>가 힘을 보탰다). 그러나 Authers는 AI 붐의 가장 정직한 온도계를 들이댄다 — <strong>토큰 지출</strong>. LLM에 실제로 얼마를 쓰는지 세는 <strong>Silicon Data 토큰 지출 지수가 사상 최고에서 급락</strong>했다. "수면 아래에서 문제가 끓고 있다."</div>
+        <ul class="news-points">
+          <li>이 지수는 가격×사용량이라 하락의 원인이 셋 중 무엇이든 될 수 있다: 정가 인하, <strong>더 싼 모델(특히 중국산)로의 이동</strong>, 혹은 지불 의사의 약화. 불과 몇 주 전엔 작년 말의 2배였다 — 토큰 단가가 2023년 이후 90% 넘게 떨어졌는데도</li>
+          <li><strong>하이퍼스케일러의 변질</strong>(BofA, Savita Subramanian): 2년간의 AI 군비경쟁으로 <strong>이들이 버는 잉여현금이 거의 전부 capex(=칩)로 나간다</strong>. 투자자들이 "이제 이들도 구식 중공업만큼 자본에 의존한다"는 걸 깨닫자 — 수십 년간 테크의 강점이던 자산경량성이 사라지자 — 주가가 멈췄다. <strong>MS는 작년 10월 고점 대비 −28%</strong></li>
+          <li>모건스탠리 Michael Wilson: "하이퍼스케일러는 이제 안정될 것이고, <strong>반도체가 조정받을 것</strong>… 좋은 전개다. 이 괴리는 지속될 수 없다"</li>
+          <li>장기 낙관은 유효: BCG 분석에 따르면 토큰은 <strong>조립라인이 제조에 한 일을 지식노동에</strong> 한다. 단 Citadel의 Frank Flight — 핵심은 생산성이 아니라 <strong>비용이 내려간 업무의 수요 탄력성</strong>. 시장은 "AI가 어디에나 즉시 존재하는 세계"에 닻을 내리면 안 됨</li>
+          <li>결론: 앞으로는 <strong>불균등한 확산</strong> — 수익이 정당화되는 곳에 집중되고, 자산가격은 야망과 물리적 제약을 주기적으로 재조정당한다. 다르게 말하면 <strong>"수직 상승의 시기는 아마 끝났다."</strong></li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>붕괴 하루 전, "AI는 끝났다"가 아니라 <strong>"수직 상승이 끝났다"</strong>는 진단. 다음 날 한국이 −20%로 그 말을 증명한다.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1005,6 +1087,102 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         </ul>
       </div>
     </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Bubble Watch / H1 Review</span>
+        <div class="news-title">(7/1) Authers "훗날 돌아보면, 다가올 붕괴가 뻔해 보일까?" — 2008년 7월과 소름 끼치게 닮은 상반기</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">2026년 상반기가 끝났다. <strong>반도체는 사상 최고의 분기, S&amp;P500은 2020년 이후 최고의 분기</strong>. Authers는 '완벽한 사후 정보로 투자하는 가상 헤지펀드' <strong>Hindsight Capital</strong> 결산을 이례적으로 반년 만에 앞당겨 냈다. 이유: "6개월 뒤 돌아보면 '붕괴는 처음부터 뻔했다'고 말하게 될 가능성이 있어서."</div>
+        <ul class="news-points">
+          <li><strong>2008년의 판박이</strong>: 그해 상반기 최고의 트레이드는 '은행 공매도 + 원유 매수'로 2배 넘게 벌었다. 그런데 <strong>7월 초, 그 트레이드는 자기 무게에 무너졌다</strong> — 은행이 붕괴하는데 원유 수요가 버틸 리 없었으니까. 연말엔 은행지수가 원유를 이겼다. "지금이 그 1~6월과 같은 자리인가?"</li>
+          <li>상반기 최고 수익: <strong>소프트웨어 공매도 + SOX 반도체 매수 = +150%</strong>. 더 극단은 한국 — <strong>코스피는 올해 거의 2배</strong>, '코스피 매수 + 자카르타 공매도'는 6개월에 3배</li>
+          <li>하드머니 붕괴: <strong>브렌트 매수(+19.8%) + 비트코인 공매도(−33.3%) = +79.4%</strong>, '가솔린 선물(+76.7%) + 은 공매도(−18.3%) = +116%'. 전쟁이 "원유가 더 믿을 만한 실물"임을 각인시키고, <strong>Warsh가 매파로 등장</strong>하며 'debasement 트레이드'는 침몰</li>
+          <li><strong>경제 논리의 한계</strong>(BCA, Budaghyan): 미국에서 <strong>테크를 뺀 모든 capex는 감소 중</strong>. 테크 capex는 GDP의 5%(2000년 정점)를 넘어 <strong>실질 기준 7% 이상</strong> — 미국(7%)·일본(9%)·스페인(8%) 주택버블이 터진 바로 그 수준. "AI가 남들이 내줄 수 없는 자본까지 빨아들이기 시작했다. 현 추세는 <strong>몇 달</strong> 남았다고 보는 게 합리적"</li>
+          <li><strong>투기 과열</strong>: 대형 IPO는 역사적으로 해당 섹터의 천장에서 나온다. 그리고 코스피의 경이적 상승은 <strong>외국인 자금이 대거 빠져나가는 와중</strong>에 벌어진 일 — 즉 <strong>한국 개미의 열광에 위태롭게 의존</strong>. "이 극단적 랠리가 반년을 더 못 버틸 것 같지만, 우리에겐 아직 사후 정보가 없다"</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p><strong>이 글이 나온 지 일주일 만에 7/8 한국 −20% 약세장이 온다.</strong> Authers가 지목한 세 가지(개미 의존 코스피 · AI capex 과잉 · 2008년 7월 패턴)가 정확히 그 순서로 실현된다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Iran / Ceasefire</span>
+        <div class="news-title">(6/29) 미–이란 휴전 합의 — 그런데 시장은 이미 그 너머를 본다. "그다음은?"</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">이란과 미국이 <strong>상호 사격 중단(휴전)에 합의</strong>했다. 4개월을 끌어온 전쟁의 종결 기대에 유가는 내렸다. 그런데 Authers의 제목이 시사하듯 <strong>시장은 이미 휴전을 지나쳐 그다음을 보고 있었다</strong> — 문제는 "그다음이 무엇이냐"였다.</div>
+        <ul class="news-points">
+          <li>휴전은 '평화'가 아니라 <strong>사격 중지</strong>일 뿐 — 호르무즈 정상화·제재·핵 문제는 미해결. 6/19 프레임워크가 막판에 취소됐던 전례가 이미 있었음</li>
+          <li>역설: 유가가 내리면 인플레 압력이 완화되지만, 동시에 <strong>Warsh의 매파 기조가 유지될 이유(견조한 성장)</strong>는 그대로 → 인하는 여전히 없음</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>바로 이 휴전이 <strong>7/9 트럼프의 "휴전은 끝났다" 선언</strong>으로 뒤집힌다. 시장이 "그 너머"를 보며 값을 매겨둔 평화가 열흘 만에 사라지는 셈.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Fed Independence</span>
+        <div class="news-title">(6/30) 대법원 "대통령은 Fed 이사를 해임할 수 없다" — 트럼프는 졌지만, 그가 얻은 것을 보라</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">미 대법원이 <strong>Fed 이사 해임을 막았다</strong>. 표면적으로 트럼프의 패배이자 <strong>Fed 독립성의 승리</strong>. 하지만 Authers의 관점은 다르다 — <strong>"트럼프는 싸움에서 졌지만, 그가 무엇을 얻었는지 보라."</strong></div>
+        <ul class="news-points">
+          <li>얻은 것: 트럼프는 이미 <strong>의장 자리에 자기 사람(Warsh)을 앉혔다</strong>. 해임권 없이도 인사로 Fed를 바꿀 수 있다는 것 — 다만 그 Warsh가 인하를 거부하는 매파로 판명난 게 아이러니</li>
+          <li>시장 함의: 정치적 압박으로 금리를 끌어내릴 경로가 <strong>법적으로도 막혔다</strong> → "인하 기대"의 마지막 근거 소멸</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Yield Curve</span>
+        <div class="news-title">(7/2) "Warsh는 사람을 속이는 커브 평탄화를 경계해야" — 본인은 "지금까진 이기고 있다"</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Warsh는 <strong>"지금까진 내가 이기고 있다"</strong>고 주장했다 — 매파 기조 덕에 인플레 리스크가 잦아들고 있다는 것. 하지만 Authers는 경고한다: <strong>수익률 곡선의 평탄화는 사람을 속인다.</strong> 장기금리가 내려앉는 것은 "물가를 잡았다"는 신호일 수도 있지만, "성장이 꺾인다"는 신호일 수도 있다.</div>
+        <ul class="news-points">
+          <li>같은 주 데이터의 엇갈림: <strong>JOLTS 구인건수는 팬데믹 이전 정점 수준으로 복귀</strong>(강함) ↔ <strong>7/3 고용보고서는 실망</strong>(약함)</li>
+          <li>Warsh의 딜레마: 매파를 유지하다 성장이 꺾이면, 커브가 보내던 '승리의 신호'는 사실 경고였던 셈이 된다</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>"인플레는 잡히는데 성장도 꺾인다" — 7월 조정에서 주식이 하락해도 Fed가 구해주지 못하는 이유의 밑그림.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Quarter End</span>
+        <div class="news-title">(7/1–3) 2020년 이후 최고의 분기로 마감 — 그리고 금요일 고용은 실망</div>
+        <span class="news-source">Morning Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">상반기 마지막 거래일, <strong>S&amp;P500은 2020년 이후 최고의 분기</strong>를 기록했다("Firework"). 전쟁·4% 물가·매파 Fed를 모두 겪고도 AI가 전부를 끌어올린 반기. 그러나 주 후반 <strong>고용보고서가 실망</strong>스럽게 나오며(7/3) 톤이 바뀌기 시작했다.</div>
+        <ul class="news-points">
+          <li>중국 AI가 정체된 미국 모델을 따라잡고 있다는 분석(6/29) — 'Two Silicon Valleys' 구도</li>
+          <li>7/1 Anthropic <strong>Claude Fable 5 공개</strong>, Meta는 남는 클라우드 용량 임대 — 과잉 capex 수익화 시도</li>
+          <li>트럼프, 작년 크립토 사업으로 <strong>$12억</strong>을 벌었다고 밝힘 — 정책과 자산의 이해상충 논쟁</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <!-- ── Jun 22–26, 2026 ── -->
@@ -1030,6 +1208,109 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
           <li>방산주: 휴전 협상 결렬 수혜 ("to the victor go the spoils")</li>
           <li>예측시장(prediction markets)에 대형 베팅 유입</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Korea / Bubble Watch</span>
+        <div class="news-title">(6/24) "이건 한국발이다" — SK하이닉스 한마디에 −13.2%, 전 세계 테크가 흔들렸다</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">테크주가 큰 폭으로 흔들렸는데, 지정학 탓이 아니었다(중동은 오히려 진정 중, 유가 하락). 발화점은 <strong>한국</strong>이었다. 또 하나의 신생 $1조 반도체 기업 <strong>SK하이닉스</strong>가 대단한 발표를 한 것도 아니고, 단지 <strong>"범용 DRAM 시장으로 초점을 옮긴다"</strong>고 했을 뿐. 메모리는 수익성이 낮다 → "이 회사가 생각만큼 돈 찍는 면허는 아닐지도" → <strong>하루 −13.2%</strong>. Authers: "버블이 터지는 순간인가? 아마 아니다. 그러나 대단히 흥미로운 지점이다."</div>
+        <ul class="news-points">
+          <li>재평가할 여지가 컸던 이유: 하이닉스 주가는 <strong>2000년 닷컴버블조차 초라해 보일 만큼</strong> 질주해왔음</li>
+          <li>진짜 위험은 <strong>레버리지 단일종목 ETF</strong>: 홍콩 CSOP의 2배 레버리지 SK하이닉스 ETF 보유자는 −13.2%가 <strong>−26.4%</strong>로 증폭. 한국 규제당국은 최근 단일기업 ETF를 허용해놓고 <strong>이번 주 공개적으로 후회</strong>를 표명해 시장을 더 놀라게 함</li>
+          <li>전이: 미국 <strong>모멘텀 주식</strong>이 직격 — S&amp;P500 모멘텀 ETF는 작년 'Liberation Day' 이후 두 번째로 나쁜 하루. SOX 반도체지수는 급락 후에도 200일선을 크게 웃돌아 <strong>닷컴 정점 이후 가장 과매수</strong> 상태</li>
+          <li>Authers의 결론: "좋은 소식 — 아직 조정 축에도 못 낀다. 나쁜 소식 — 그래서 과잉 레버리지 투자자가 감당 못 할 손실을 볼 여지가 크다." 펀더멘털(AI 성장)이 맞아도 시장이 과열·투기적이면 <strong>사고의 위험</strong>은 열려 있음</li>
+          <li>부수 피해자 인도: 전쟁의 최대 무고한 피해자(에너지 수입국+전장 인접). GDP는 +7.7%인데 MSCI EM 내 비중은 2024년 20%→12% 아래로 붕괴 — "펀더멘털과 포지셔닝의 이 정도 괴리는 흔치 않다"(바클레이스)</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p><strong>7/8 한국 약세장(−20%)의 명백한 전조.</strong> 뉴스랄 것도 없는 한마디에 −13.2%가 나온다는 것 자체가, 가격이 이미 얼마나 취약해졌는지를 보여준 사전 진동이었다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">Software vs Semis</span>
+        <div class="news-title">(6/24) 'SaaS 종말론' — 소프트웨어는 8개월간 1/3 증발, 돈은 전부 AI 인프라로</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">칩을 걱정하는 와중에도 <strong>소프트웨어의 'SaaSpocalypse'</strong>는 계속됐다. S&amp;P 1500 소프트웨어 지수는 <strong>8개월 만에 가치의 1/3</strong>을 잃었다 — 이란 사태 이전부터 시작된 약세다.</div>
+        <ul class="news-points">
+          <li>원인(Apollo, Torsten Slok): ① AI가 기존 사업모델을 파괴 ② 예상보다 길어진 고금리가 그 사업을 떠받친 부채를 압박. SaaS 대상 <strong>다이렉트 렌딩이 2015년 $80억 → 2025년 $5,380억</strong>으로 폭증해 양쪽 충격에 노출된 자본이 막대</li>
+          <li><strong>Anthropic의 Mythos·Fable 모델</strong> 우려로 미국이 수출 제한을 부과한 것도 공포에 가세</li>
+          <li>다만 '증발'은 아님: 자금이 AI capex 관련주로 쏠리며 소프트웨어가 <strong>자본과 관심을 동시에 잃는</strong> 구도(모닝스타). D.E. Shaw에 따르면 AI 노출도 높은 산업의 생산성 증가율은 5%+ (경제 전체의 약 2배) — 장기적으론 오히려 수혜 가능</li>
+          <li>반도체 강세론: BofA는 미 반도체 수요 전망을 <strong>2030년 $2.7조</strong>(기존 $2.3조)로 상향 — 연 28% 성장. "메모리 부족과 가격 인플레가 핵심 동력"</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>AI 랠리는 '전체 상승'이 아니라 <strong>인프라(반도체) ↔ 소프트웨어의 제로섬 이동</strong>이었다. 쏠림이 극단화될수록 한쪽이 흔들릴 때 전체가 흔들린다 — 7월 조정의 구조적 배경.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Fed / Debasement Trade</span>
+        <div class="news-title">(6/25) Warsh가 '통화가치 하락 트레이드'를 침몰시키다 — 그리고 Micron이 공포를 잠재우다</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">한국발 진동 다음 날, 시장의 시선은 <strong>Micron</strong>(현재 $1.2조 기업)의 회계 3분기 실적에 쏠렸다 — 예상 EPS가 12개월 만에 <strong>+645%</strong> 뛴, 그야말로 하늘로 올라간 기대치. 결과는 "이익이 생각보다 더 빠르게 늘고 있다"는 확인이었고, 메모리 슈퍼사이클 서사는 일단 유지됐다.</div>
+        <ul class="news-points">
+          <li>동시에 Authers는 <strong>Warsh가 'debasement trade'를 침몰시켰다</strong>고 진단 — 매파 전환으로 실질금리·달러가 오르자, "통화가치가 훼손되니 금·비트코인을 사자"는 베팅의 논리가 무너짐</li>
+          <li>비트코인: 기관들이 SEC를 설득해 현물 ETF를 승인받은 뒤의 대랠리는 <strong>"완전히 끝났다"</strong>(Authers). ETF는 새 매수자를 계속 끌어와야 유지되는 구조였음</li>
+          <li>즉 6월 하순의 두 축: 펀더멘털(Micron)은 버텼고, 유동성·통화 서사(금·크립토)는 Warsh에게 깨졌다</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>실적이 좋아도 <strong>할인율(실질금리)이 오르면</strong> 가격은 흔들린다. 7월에 이 조합(호실적 + 매파 + 지정학 재발)이 최악의 형태로 겹친다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-other">Fed History</span>
+        <div class="news-title">(6/23) 앨런 그린스펀 100세로 별세 — '그린스펀 풋'의 시대가 Warsh의 시대와 교차하다</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Fed의 오랜 '마에스트로' <strong>앨런 그린스펀이 100세로 별세</strong>했다. Authers의 평가: <strong>"그의 유산은 그의 화법만큼이나 난해하다"</strong> — 의도적으로 모호하게 말했던 의장, 시장이 흔들릴 때마다 구해준다는 <strong>'그린스펀 풋'</strong>의 창시자, 그리고 "비이성적 과열"을 경고하고도 버블을 막지 못한 인물.</div>
+        <ul class="news-points">
+          <li>공교로운 타이밍: <strong>말을 아끼고(성명서 341→130단어) 시장을 구해주지 않겠다는 Warsh</strong>가 등장한 바로 그 주에, 말을 늘어놓고 시장을 구해주던 시대의 상징이 떠났다</li>
+          <li>SK하이닉스·SpaceX·비트코인 ETF 등 이번 주의 모든 과열 신호가 '그린스펀 풋이 없는 세계'에서 어떻게 끝나는지의 시험대</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-tech">Consumer / AI Cost</span>
+        <div class="news-title">(6/26) 'iFlation' — 애플이 AI 인플레를 이유로 가격 인상 · OpenAI는 IPO를 미루다</div>
+        <span class="news-source">Morning Brew · Tech Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">AI 붐의 비용이 드디어 <strong>소비자 가격표</strong>에 도달했다. <strong>애플이 다수 제품의 가격을 인상</strong>했는데, 그 이유가 'AI 인플레이션' — 메모리 등 부품 가격 급등이다. Morning Brew의 표현 그대로 <strong>"iFlation"</strong>.</div>
+        <ul class="news-points">
+          <li>인과가 한 바퀴 돌았다: AI 데이터센터 수요 → 메모리 품귀·가격 폭등(하이닉스·마이크론 실적의 원천) → <strong>완제품 가격 인상</strong> → 소비자물가 → Warsh의 인플레 경계</li>
+          <li>같은 날 <strong>OpenAI는 IPO를 미뤘다</strong>("kicks the can") — SpaceX가 3일 만에 $2.75조로 폭등한 시장에서조차 서두르지 않겠다는 신호</li>
+          <li>예측시장(Polymarket·Kalshi)은 호황이지만 해킹·가짜 베팅 등 잡음도 확대</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>"AI는 디플레이션적"이라는 통념과 반대로, 이 국면의 AI는 <strong>인플레이션의 원인</strong>이었다. 6/11 소기업 물가 경고와 같은 방향 — Fed가 인하로 못 가는 이유가 하나 더 쌓임.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1598,6 +1879,48 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         </ul>
       </div>
     </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Chips / $1T Club</span>
+        <div class="news-title">(5/27) Authers "메모리 뱅크를 위한 랠리" — 소비심리는 1978년 이후 최악인데 S&amp;P는 사상 최고, 오직 반도체 때문</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">"칩 수요는 하늘을 찌르고 공급은 제한적이다. 그래서 주가가 포물선을 그린다." Authers는 그 한 문장이면 <strong>미시간대 소비심리가 1978년 조사 시작 이후 최악</strong>인데도 S&amp;P500이 또 사상 최고로 마감한 이유가 설명된다고 했다. <strong>Micron이 +19.3%로 $1조 클럽(미국 10개사)에 진입</strong>했고, <strong>몇 시간 뒤 SK하이닉스도 그 문턱을 넘었다</strong>(삼성전자는 몇 주 전 달성). 최대 반도체 기업들이 이제 Meta를 넘거나 맞먹는다.</div>
+        <ul class="news-points">
+          <li>Micron 급등의 촉매 둘: ① <strong>UBS가 목표주가를 두 배로</strong> — 맞다면 내년 이맘때 Micron은 <strong>$1.8조</strong> ② 화웨이가 'Logic Folding' 기술 돌파를 선언(중국의 AI 전쟁 의지) — 역설적으로 미국 칩주 매수 이유로 소비됨</li>
+          <li><strong>주도권이 바뀌었다</strong>: Mag 7이 AI 수익을 독식하리란 기대의 <strong>뒤늦은 교정</strong> — 하이퍼스케일러는 돈을 많이 써야 하고, 그 이익의 상당 부분이 <strong>핵심 공급자에게 간다</strong>. Hindsight Capital 기준 "Mag 7 공매도 + SOX 매수"는 올해만 <strong>+71%</strong>. S&amp;P500의 연간 672p 상승 중 Mag 7 기여는 160p, SOX 7개사는 289p — 엔비디아를 빼면 <strong>Mag 6는 79p, SOX 8은 369p</strong></li>
+          <li><strong>단 이건 '비싸서 위험한' 버블이 아니다</strong>: 향후 2년 예상이익 대비로 Micron은 오히려 S&amp;P500보다 싸다. 문제는 <strong>그 이익 추정치가 합리적이라는 가정</strong> — "추정이 맞다면 칩 제조사는 큰돈을 벌 것이다. 그러나 <strong>틀렸을 가능성도 충분히 크다</strong>"</li>
+          <li>신흥국도 마찬가지: EM에서 <strong>AI 대장 3개를 빼면</strong> 작년 Liberation Day 직후 수준으로 되돌아간다. MSCI EM 4대 구성국(중국·한국·인도·대만)은 모두 <strong>호르무즈 장기 폐쇄에 가장 취약한</strong> 나라들</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>7/8 한국 약세장의 <strong>출발점</strong>. "이익 추정이 틀렸을 수 있다"는 이 경고는 6/24 SK하이닉스 −13.2%, 7/1 "개미 의존 코스피", 7/8 −20%로 정확히 이어진다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Oil / Politics</span>
+        <div class="news-title">(5/26–28) "호르무즈의 평화 — 아니면 항복" · 유가 −5.6%, 그런데 시장은 트럼프의 가드레일이 되지 못한다</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">5월 말 이란 합의 기대가 커지며 <strong>WTI가 −5.55%($88.68)</strong> 하락했다. 그러나 Authers는 호르무즈에서 벌어지는 일을 <strong>"평화처럼 보인다 — 아니면 항복(surrender)"</strong>이라 표현했다. 동시에 그가 던진 더 큰 질문: <strong>왜 시장은 트럼프의 가드레일 역할을 하지 못하는가.</strong></div>
+        <ul class="news-points">
+          <li>전통적으로 채권·주식시장의 반발은 대통령의 정책을 제어했다(리즈 트러스가 49일 만에 무너진 것처럼). 그러나 지금은 <strong>AI 붐이 주가를 떠받치는 탓에 시장이 경고음을 내지 못한다</strong></li>
+          <li>결과: 정책 실험(관세·중동·Fed 인사)이 시장의 제동 없이 계속됨 → 리스크가 가격에 반영되지 않고 <strong>축적</strong>됨</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>"시장이 경고하지 않으니 정책은 멈추지 않는다" — 6월 AI 가림막 논리의 원형. 축적된 리스크가 7월에 한꺼번에 청구된다.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── May 18–22, 2026 ── -->
@@ -1891,6 +2214,46 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         <div class="news-impact">
           <div class="news-impact-label">💡 큰 그림 연결</div>
           <p>정부가 반도체·희소금속에 이어 양자까지 지분을 사들이는 <strong>'국가 자본주의' 확산</strong>. AI·안보를 명분으로 한 재정 개입이 시장 테마로 자리잡았다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Bonds</span>
+        <div class="news-title">(5/19–20) Authers "슬로모션으로 진행되는 채권 대참사" — 30년물 19년 만의 최고, 값싼 자금의 시대가 끝난다</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">AI 열광에 가려져 있었지만, 5월 중순 진짜 사건은 채권시장에서 벌어졌다. <strong>미 30년 국채 금리가 19년 만의 최고</strong>로 오래된 이정표들을 차례로 뚫었다. Authers는 이를 <strong>"슬로모션으로 진행되는 채권 자동차 사고"</strong>라 불렀다 — 한 번에 터지는 위기가 아니라, 천천히 그러나 확실하게 진행되는 파괴.</div>
+        <ul class="news-points">
+          <li>의미: 전쟁發 인플레 + 재정 부담이 겹치며 <strong>"값싼 자금의 시대(cheap funds era)"가 끝날 수 있다</strong>. 장기금리 상승은 모든 자산의 할인율을 올린다</li>
+          <li>이 국면의 아이러니: 채권이 경고음을 내는데도 <strong>주식은 AI 덕에 태연</strong> — 두 시장이 서로 다른 세계를 살고 있었음</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>6/18 Warsh의 매파 서프라이즈로 실질금리가 다시 튀고, 6/24 SaaS의 몰락 원인("예상보다 길어진 고금리가 부채를 압박")으로 되돌아온다. 여름 내내 흐르는 저음.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI / IPO</span>
+        <div class="news-title">(5/21) "SpaceX IPO가 엔비디아를 지루하게 만들다" — 매출 +85%·마진 62%인데 주가는 하락</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">엔비디아가 <strong>매출 85% 성장, 마진 62%</strong>라는 경이로운 실적을 내고도 주가가 <strong>하락</strong>했다. 시장의 관심은 이미 다가올 <strong>SpaceX IPO</strong>로 옮겨간 뒤였다 — Authers의 표현으로 엔비디아는 "sNoozefest(하품 나는 행사)"가 됐다.</div>
+        <ul class="news-points">
+          <li>결정적 신호: <strong>세계 최고의 실적조차 더 이상 주가를 올리지 못한다</strong>는 것 = 기대가 이미 가격에 다 들어갔다는 뜻</li>
+          <li>동시에 자금은 '더 새로운 이야기'(SpaceX)로 이동 — 신규 대형 IPO가 기존 대장주의 자리를 뺏는 구도가 시작됨</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 큰 그림 연결</div>
+          <p>7/1 Authers의 경고 — <strong>"대형 IPO는 역사적으로 해당 섹터의 천장에서 나온다"</strong> — 의 첫 장면. 5월의 이 하품이 7/9 "AI가 없었던 것처럼"의 서막이었다.</p>
         </div>
       </div>
     </div>
@@ -3259,6 +3622,152 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
 </div>
 </div><!-- /tab-monthly -->
 
+<div class="page" id="tab-quarterly">
+<div class="q-page-wrap">
+
+  <div style="margin-bottom:24px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);margin-bottom:6px;">📊 분기 요약</h2>
+    <p style="font-size:13px;color:var(--ink-muted);">분기가 끝나면 국내외 정치 · 마켓 · 테크 · AI 네 갈래로 "무슨 일이 있었고, 왜 그렇게 됐는지"만 남깁니다.</p>
+  </div>
+
+  <!-- Q2 2026 -->
+  <div class="q-block">
+    <div class="q-header">
+      <div class="q-title">2026년 2분기 <span style="font-size:13px;color:var(--ink-muted);font-family:'Inter',sans-serif;">Apr – Jun</span></div>
+      <div class="q-subtitle">한 줄 요약: <strong>전쟁은 안 끝났는데 AI가 그걸 가려줘서 사상 최고가 났고, 그 가림막이 6월 말부터 벗겨지기 시작했다.</strong></div>
+    </div>
+    <div class="q-body">
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-war)">🌐 국내외 정치</div>
+        <ul>
+          <li><strong>이란 전쟁이 2분기 내내 배경음</strong> — 3월 개전 후 트럼프가 "이란 해·공군은 궤멸됐다"고 선언했지만, 이란은 호르무즈 해협을 계속 조였다. 5월 유가 $120 돌파, 6/1 이란 "완전 봉쇄" 선언(유가 +5.9%)</li>
+          <li><strong>6월 중순 잠정 평화 프레임워크 → 6/19 금요일 막판 취소</strong>. 6/29 휴전 합의로 되살아났지만 이것도 7/8~9에 파기됨</li>
+          <li><strong>Fed 인사 = 최대 정치 이벤트</strong>: 5/1 파월의 마지막 FOMC(이사직은 잔류), 5/15 <strong>Warsh 인준(상원 54–45, 역대 최소 표차)</strong>. 6/30 대법원은 "대통령은 Fed 이사를 해임할 수 없다"고 판결 — 트럼프는 졌지만 이미 의장 자리를 얻은 뒤였다</li>
+          <li><strong>미중은 "관리된 경쟁"</strong>: 5월 트럼프–시진핑 베이징 회담("전략적 안정" 3년, 보잉 200대) ↔ 6월 관세 시퀄(한국 12.5%)과 G7의 희토류 탈중국 추진이 공존</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>이란은 "정권을 지키면서 수로를 통제할 수 있다"는 걸 학습했고, 미국은 이를 되돌릴 저비용 수단이 없었다. 그래서 협상은 <strong>모호한 문서</strong>로만 봉합됐고(Authers: "양해각서가 아니라 <em>오해각서</em>"), 그 모호함의 오차범위 안에 7월 파기가 처음부터 들어 있었다.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-now,#b45309)">📈 마켓</div>
+        <ul>
+          <li><strong>S&amp;P500은 2020년 이후 최고의 분기</strong>로 마감(6/30). 미시간대 소비심리가 <strong>1978년 조사 시작 이후 최악</strong>인데도 사상 최고 — 상승분이 사실상 전부 반도체에서 나왔기 때문</li>
+          <li><strong>Shiller CAPE가 2000년 9월 이후 최고, 1929년 대공황 직전마저 넘어섬</strong>(6/1). 매출 대비 멀티플은 역사상 최고</li>
+          <li><strong>채권·통화</strong>: 5월 30년물이 19년 만의 최고("슬로모션 채권 대참사"). 6/18 Warsh의 매파 서프라이즈로 TIPS 실질금리 급등·달러 연중 최대 상승. 연말 예상금리 3.24%→<strong>3.83%</strong></li>
+          <li><strong>인플레</strong>: 헤드라인 CPI가 3년 만에 <strong>4% 돌파</strong>(6/10). ECB 인상, BOJ는 1995년 이후 최고로 인상 — 반면 영국은 유가 진정에 인상 기대 3회→1회</li>
+          <li><strong>'통화가치 하락 트레이드'의 붕괴</strong>: 상반기에 브렌트 +19.8% vs 비트코인 −33.3%. Warsh의 매파 전환이 금·크립토 논리를 무너뜨림</li>
+          <li><strong>분기 말 균열</strong>: 6/24 SK하이닉스 −13.2%(2배 레버리지 ETF −26.4%), 6/30 Mag 7 이탈 시작</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>전쟁이 인플레를 밀어올려 <strong>인하 기대가 사라졌는데도</strong> 주가가 오른 이유는 단 하나 — AI 이익이 실제로 폭증했기 때문. 그러나 이는 <strong>지수의 성격 자체를 바꿔놓았다</strong>: 테크·한국·대만을 빼면 MSCI 주요국은 개전 이후 전부 마이너스였다(Authers 6/11). 즉 2분기 랠리는 "경제가 좋아서"가 아니라 <strong>"한 업종이 나머지를 가려서"</strong> 만들어진 것이고, 그래서 그 업종이 흔들리자 전체가 흔들렸다.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">💻 테크</div>
+        <ul>
+          <li><strong>$1조 클럽이 반도체로 채워졌다</strong>: 5월 삼성전자에 이어 5/27 <strong>Micron(+19.3%)과 SK하이닉스가 같은 날 $1조 돌파</strong>. 최대 칩 기업들이 Meta를 넘거나 맞먹게 됨</li>
+          <li><strong>주도권 교체</strong>: S&amp;P500 상승 672p 중 Mag 7은 160p, SOX 7개사는 289p. 엔비디아를 빼면 <strong>Mag 6 79p vs SOX 8 369p</strong>. "소프트웨어 공매도 + SOX 매수"가 상반기 <strong>+150%</strong></li>
+          <li><strong>소프트웨어의 몰락(SaaSpocalypse)</strong>: S&amp;P 1500 소프트웨어 지수 8개월간 −1/3. SaaS 대상 다이렉트 렌딩 2015년 $80억 → 2025년 <strong>$5,380억</strong></li>
+          <li><strong>사상 최대 IPO 러시</strong>: 6/12 <strong>SpaceX $1.78조 데뷔</strong>(3일 만에 $2.75조로 아마존 추월), OpenAI(6/9)·Anthropic(6/1) 파일링</li>
+          <li><strong>'iFlation'</strong>(6/26): 애플이 AI發 메모리 값 폭등을 이유로 제품 가격 인상 — AI 비용이 소비자물가에 도달</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>깨달음 하나가 시장을 재편했다 — <strong>"하이퍼스케일러가 AI 이익을 독식하지 못한다. 돈을 엄청 써야 하고, 그 돈은 공급자(칩)에게 간다."</strong> 그래서 자금이 소프트웨어·플랫폼 → 인프라로 이동했다. 문제는 이게 <strong>상승이 아니라 제로섬 회전</strong>이었다는 것. 실제로 하이퍼스케일러가 버는 잉여현금은 거의 전부 capex로 나가고(MS는 고점 −28%), 테크 capex는 실질 GDP의 <strong>7% 초과</strong> — 미국·일본·스페인 주택버블이 터진 바로 그 수준.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">🤖 AI</div>
+        <ul>
+          <li><strong>모델 경쟁의 판이 바뀜</strong>: 4/30 빅테크 실적에서 <strong>"최고 모델 제공" → "모든 모델을 호스팅하는 마켓플레이스"</strong> 전환 확인(Apple도 WWDC에서 Siri에 외부 모델 결합)</li>
+          <li><strong>Anthropic이 OpenAI를 추월</strong>(5/29, $9,650억 vs $8,520억). 6/10 'Fable' 공개, 7/1 Claude Fable 5</li>
+          <li><strong>AI = 안보 이슈로 격상</strong>: 6월 중순 미 정부가 Anthropic에 최강 모델의 <strong>비미국인 사용 차단</strong>을 명령("AI 트레이드 전체를 얼릴 수 있다"). Mythos·Fable 우려로 수출 제한</li>
+          <li><strong>중국의 추격</strong>: 화웨이 'Logic Folding' 돌파 선언(5/27), Zhipu 폭등(6월 말), "중국 AI가 정체된 미국 모델을 따라잡는다"(6/29)</li>
+          <li><strong>온도가 식기 시작</strong>: 6/10 Oracle이 capex 급증 발표에 −25% — 시장이 <strong>"그 돈 어디서 오나"</strong>를 묻기 시작</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>2분기의 AI는 <strong>기술 경쟁에서 자본·정치 경쟁으로</strong> 넘어갔다. 모델 성능 격차가 좁혀지자(마켓플레이스화·중국 추격) 승부처가 ① 누가 칩과 전력을 확보하나 ② 누가 정부 허가를 받나로 옮겨간 것. 그래서 <strong>실적이 좋아도</strong> 자금조달 부담과 규제 리스크가 주가를 눌렀고, 이것이 6월 말~7월 리프라이싱의 실질적 원인이었다.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Q1 2026 -->
+  <div class="q-block">
+    <div class="q-header">
+      <div class="q-title">2026년 1분기 <span style="font-size:13px;color:var(--ink-muted);font-family:'Inter',sans-serif;">Jan – Mar</span></div>
+      <div class="q-subtitle">한 줄 요약: <strong>관세 체제가 법정에서 무너지고 연준 교체가 예고된 자리에, 3월 이란 전쟁이 에너지 충격을 얹었다.</strong></div>
+    </div>
+    <div class="q-body">
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-war)">🌐 국내외 정치</div>
+        <ul>
+          <li><strong>IEEPA 위헌 판결</strong> — 트럼프 2기의 관세 근거였던 긴급경제권한법 사용에 제동. 관세 정책이 '대통령 재량'에서 '법·의회 문제'로 이동</li>
+          <li><strong>연준 체제 전환 가시화</strong> — 파월 임기 종료를 앞두고 후임 논쟁 본격화. 트럼프는 3% 인플레 목표(=인하 용이)를 원했고, 시장은 "고분고분한 비둘기"를 예상</li>
+          <li><strong>2/27 미–이란 전쟁 발발</strong> — 호르무즈 해협이 조여지며 에너지 공급망 직격. 이후 모든 매크로의 상수가 됨</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>1분기의 성격은 <strong>"정책의 자의성이 제도에 부딪히는 국면"</strong>이었다. 관세는 법원에, Fed 개입은 인사와 대법원에 막혔다. 그러나 그 공백을 <strong>지정학</strong>이 채웠다 — 법으로 막을 수 없는 충격이 3월에 들어온 것.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-now,#b45309)">📈 마켓</div>
+        <ul>
+          <li><strong>전쟁 전과 후가 갈림</strong>: 개전일(2/27) 이후 <strong>테크·한국·대만을 제외한 MSCI 주요국은 전부 마이너스</strong>로 돌아섰다 — 이 사실이 2분기 내내 지수에 가려져 있었다</li>
+          <li><strong>인플레 기대 급등</strong>: 개전 직후 1~2년 기대물가 +100bp. 연말 Fed 금리 기대도 +75bp — "인하 사이클" 시나리오가 통째로 폐기</li>
+          <li><strong>하드머니 랠리의 정점</strong>: 연초 귀금속 사상 최고, 비트코인은 작년 10월 고점. 둘 다 곧 꺾일 준비를 마친 상태였다</li>
+          <li><strong>에너지가 유일한 승자</strong>: 3월 에너지주 급등 — 단 이후 트럼프 2기 전체로 보면 나머지 시장과 수익률이 같아짐(충격이 전방위로 확산됐기 때문)</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>전쟁은 <strong>공급 충격</strong>이라 중앙은행이 손쓸 수 없다 — 금리를 올리면 성장이 죽고, 내리면 물가가 뛴다. 그래서 1분기에 시장은 "완화 기대"를 버렸고, 그 자리를 <strong>AI 이익 성장</strong>이라는 유일한 상승 논리가 채우게 된다. 2분기 쏠림의 씨앗이 여기서 뿌려졌다.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">💻 테크</div>
+        <ul>
+          <li><strong>반도체 쏠림의 시작</strong> — 전쟁으로 다른 모든 게 흔들릴 때, AI 수요는 유일하게 확실한 성장 스토리였다. 메모리 품귀가 가격 인플레로 이어지며 삼성·SK하이닉스·Micron의 이익 추정치가 급상승</li>
+          <li><strong>소프트웨어의 약세는 이미 시작</strong> — S&amp;P 1500 소프트웨어 지수의 하락은 <strong>이란 사태 이전부터</strong> 진행 중이었다(AI가 기존 사업모델을 잠식 + 고금리가 부채를 압박)</li>
+          <li><strong>IPO 파이프라인 형성</strong>: SpaceX·OpenAI·Anthropic의 상장 논의가 1분기 내내 밸류에이션 경쟁으로 번짐</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>"불확실한 세상에서 확실한 성장"이라는 희소성 때문에 <strong>자금이 한 곳으로 모였다</strong>. 이것이 밸류에이션이 아니라 <strong>포지셔닝</strong> 문제였다는 게 나중에 드러난다 — 2분기에 이익 추정치가 따라 올라오면서 "싸 보이는 버블"이 완성됐기 때문.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">🤖 AI</div>
+        <ul>
+          <li><strong>AI 패권 경쟁이 국가 전략으로</strong> — 미중 모두 AI를 안보 자산으로 다루기 시작. 희토류·컴퓨트가 "새로운 전략 자산" 목록에 오름</li>
+          <li><strong>모델 경쟁 격화</strong>: OpenAI·Anthropic의 프런티어 경쟁이 인재·자본 전쟁으로 확장(4월 Karpathy 영입 등으로 이어짐)</li>
+          <li><strong>규제의 그림자</strong>: EU가 상위 모델 접근을 제한하는 흐름이 시작 — 6월 미국의 Anthropic 차단 명령의 전조</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">왜 그렇게 됐나</div>
+          <p>모델이 <strong>보안 취약점을 찾아낼 만큼</strong> 강해지자, AI는 제품이 아니라 <strong>무기 카테고리</strong>로 취급되기 시작했다. 이 인식 전환이 1분기에 자리 잡았고, 2분기에 "정부 서한 한 장이 최고 기업도 멈출 수 있다"는 현실로 나타난다.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div><!-- /tab-quarterly -->
+
 
 
 <!-- ════════════════════════════════════════════
@@ -3540,6 +4049,78 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         <div class="era-title">The Truce Rally — Peak and Unwind</div>
       </div>
     </div>
+
+    <div class="new-section-box">
+      <div class="new-section-tag">🆕 May 1 update</div>
+      <div class="new-section-title">Big Tech earnings · Powell steps back · oil tops $120 · Musk testifies</div>
+      <ul class="event-list">
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">Apr 30, after hours</span><span class="event-title">Big Tech's four report — confirming the pivot to an AI marketplace strategy</span></div>
+          <ul class="event-points">
+            <li><strong>Alphabet:</strong> revenue $110B, Google Cloud +63% → shares +5% after hours ✅</li>
+            <li><strong>Microsoft:</strong> revenue $83B, cloud +29%, capex $32B (below expectations) → ✅</li>
+            <li><strong>Meta:</strong> revenue $56B on ad strength, but annual AI capex raised $10B to $145B → shares −6% ❌</li>
+            <li><strong>Amazon:</strong> revenue $182B (+17%), AWS $38B; spending above expectations → mixed</li>
+            <li>The key shift: from "we offer the best AI model" to <strong>"we host every AI model — a marketplace."</strong> Revenue is steadier, but single-model supremacy is gone</li>
+          </ul>
+          <div class="impact" style="--era-color:var(--era-new)">
+            <div class="impact-label">What the marketplace pivot means</div>
+            <div class="impact-row">
+              <div class="impact-col">
+                <div class="impact-col-label">Near-term positive</div>
+                <ul>
+                  <li>Alphabet and Microsoft prove cloud growth</li>
+                  <li>Confirms the demand base under the OpenAI and Anthropic IPOs</li>
+                  <li>AI capex is converting into actual revenue</li>
+                </ul>
+              </div>
+              <div class="impact-col">
+                <div class="impact-col-label">Structural risk</div>
+                <ul>
+                  <li>If models commoditize, the moat moves to distribution and capital</li>
+                  <li>Meta's −6% shows the market now punishes capex, not rewards it</li>
+                  <li>Whoever depends most on capital is most exposed when rates stay high</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">May 1</span><span class="event-title">Powell's last FOMC — rates on hold, and he stays on as a governor</span></div>
+          <ul class="event-points">
+            <li>The Fed held, and Powell announced he would remain on the Board rather than leave — an unusual choice that keeps an internal check on his successor</li>
+            <li>Sets up the handover to Warsh on May 15, whose in-tray is CPI 3.8% and PPI 6%</li>
+          </ul>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">May 1</span><span class="event-title">Oil tops $120 — Trump orders preparations for a "long blockade"</span></div>
+          <ul class="event-points">
+            <li>With Hormuz still choked, crude pushed above $120 as Washington signaled it was preparing for a prolonged closure rather than a quick deal</li>
+            <li>This is the inflation shock that later forces the Fed's "no cuts" stance — and the level markets spend May and June trying to escape</li>
+          </ul>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">May 1</span><span class="event-title">Musk v. Altman, day two — "stealing from a charity" vs. "bitter about the equity he never got"</span></div>
+          <ul class="event-points">
+            <li>Musk's case: OpenAI's conversion amounted to taking assets built as a nonprofit. Altman's case: Musk is aggrieved he didn't get a stake</li>
+            <li>The trial lands as OpenAI heads toward its listing — governance risk attached to the biggest AI IPO in the queue</li>
+          </ul>
+        </li>
+
+        <li class="event new-event">
+          <div class="event-header"><span class="event-date">May 1</span><span class="event-title">Buying a house with Anthropic stock — a $4.8M Bay Area property offered in private shares</span></div>
+          <ul class="event-points">
+            <li>An investment banker offered to swap a 13-acre, $4.8M Bay Area property for private Anthropic stock</li>
+            <li>Twenty minutes from Anthropic's office, with a putting green and infinity pool</li>
+            <li>Surging paper wealth at AI firms feeding back into San Francisco property prices — the loop in miniature</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
     <ul class="event-list">
       <li class="event"><div class="event-header"><span class="event-date">May 15</span><span class="event-title">The Warsh Fed begins</span></div>
         <ul class="event-points"><li>Confirmed 54–45, the slimmest ever; Powell stays as governor. In-tray: CPI 3.8%, PPI 6%+</li></ul>
@@ -3660,6 +4241,26 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         </ul>
       </div>
     </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Geopolitics / Endgame</span>
+        <div class="news-title">(7/9) Authers: "The Memorandum of Misunderstanding's margin of error" — what was called a truce was never an agreement</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Trump declared <strong>the truce with Iran is over</strong>, and Brent responded. Authers gives the episode a brutal name: it was never a Memorandum of Understanding but a <strong>Memorandum of Misunderstanding</strong> — and the problem was its <strong>margin of error</strong>. If each side believed it had signed something different, the collapse was only a matter of time.</div>
+        <ul class="news-points">
+          <li>The market's misreading: it priced the June 29 ceasefire as a resolution, when it was <strong>a document that preserved ambiguity</strong>. July 9's rupture was inside that margin of error from the start</li>
+          <li>The result: four and a half months after the war began on Feb 27, <strong>Hormuz is still unresolved</strong> and oil points up again. The chain of "peace → cooler inflation → hopes of easing" reverses wholesale</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>The report's terminus. <strong>Korea −20% on July 8 plus the ceasefire's collapse and Brent's spike on July 9</strong> broke both narratives that ruled the first half — endless AI ascent and imminent peace — within two days. The end of a half-year that went from expecting cuts to fearing hikes.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Jul 8 -->
@@ -3680,6 +4281,26 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         <div class="news-summary">The world's hottest market of May — +78% YTD, 7th largest globally at $4.59T, Samsung in the $1T club — has fallen more than 20% from its peak, entering an official bear market. Samsung's disappointing update (Jul 7) was the trigger; the memory-supercycle crowding is unwinding. Energy prices rose again the same day as truce doubts resurfaced.</div>
       </div>
     </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Iran / Oil</span>
+        <div class="news-title">(7/8) "Iran can't help gloating, and oil prices go up" — the US launches a new wave of strikes</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">On the very day Korea entered a bear market, geopolitics broke too: <strong>the US launched a new wave of military strikes on Iran</strong>, barely a week after the ceasefire. Authers' read: Iran <strong>couldn't resist gloating</strong> about its grip on the waterway — and that triggered the re-escalation. Oil turned back up.</div>
+        <ul class="news-points">
+          <li>June 29 ceasefire → July 8 strikes: <strong>the peace premium evaporated in ten days</strong>, unwinding everything markets had priced by "looking past" the truce</li>
+          <li>The cruelty of the timing: as an over-levered Kospi was already breaking, <strong>rising oil = inflation reignites = no Fed cut</strong> — leaving no cushion anywhere</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>The moment June's "AI masks the war" mask lifts. AI (Korea) and the war (Iran) broke <strong>on the same day</strong>.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Jul 6–7 -->
@@ -3698,6 +4319,246 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
       </div>
       <div class="news-body">
         <div class="news-summary">Less than a month after listing, SpaceX entered the Nasdaq 100 — the pre-arranged fast-track index inclusion (and its army of passive buyers) executed on schedule, while the S&P 500 still holds out. Samsung "still couldn't please investors," and Amazon issued bonds to fund AI capex, extending the financing rush after Alphabet's share sale and Nvidia's borrowing.</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI Economics</span>
+        <div class="news-title">(7/7) Authers: "A token grasp of the AI boom shows trouble brewing" — the period of vertical ascent is probably over</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Chip stocks rebounded after the long American weekend, helped by <strong>Samsung's profits rising 19-fold</strong>. But Authers applies the boom's most honest thermometer — <strong>token spending</strong>. The <strong>Silicon Data Token Expenditure Index has plunged from record highs</strong>, offering "signs of trouble brewing beneath the surface."</div>
+        <ul class="news-points">
+          <li>The index blends price and usage, so the dip could mean any of three things: falling list prices, <strong>a shift toward cheaper models (notably Chinese ones)</strong>, or softening willingness to pay. Only weeks ago it was double late last year's level — even though a single token's price has fallen over 90% since 2023</li>
+          <li><strong>The hyperscalers have changed character</strong> (BofA's Savita Subramanian): after two years of the AI arms race, <strong>virtually all the free cash they produce now goes to capex — meaning chips</strong>. Once investors grasped these firms depend on capital as much as old-line industrials — erasing tech's decades-long advantage — their shares stalled. <strong>Microsoft is 28% below its October high</strong></li>
+          <li>Morgan Stanley's Michael Wilson: "I expect the hyperscalers to stabilize… and <strong>the semiconductor stocks are going to correct</strong>. That's a good development. You can't have this divergence continue"</li>
+          <li>The long-run case survives: BCG finds tokens multiply knowledge work much as <strong>the assembly line did for manufacturing</strong>. But Citadel's Frank Flight cautions the key variable isn't productivity — it's <strong>the elasticity of demand</strong> for the tasks whose costs are falling; markets shouldn't anchor on a world where AI is ubiquitous and frictionless</li>
+          <li>The conclusion: expect <strong>uneven diffusion</strong> — frontier deployment where returns justify the compute, with asset prices periodically forced to reconcile ambition with physical constraints. Put differently, <strong>"the period of vertical ascent is probably over."</strong></li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>One day before the break, the diagnosis isn't "AI is over" but <strong>"the vertical ascent is over."</strong> The next day, Korea proves it with −20%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jun 29 – Jul 3 -->
+  <div class="date-group">
+    <div class="date-group-header">
+      <div class="date-group-date">June 29 – July 3, 2026</div>
+      <div class="date-group-day">Mon–Fri — the best quarter since 2020, and a warning</div>
+      <div class="date-group-badge">Wk of Jun 29</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Bubble Watch / H1 Review</span>
+        <div class="news-title">(7/1) Authers: "In hindsight, will a coming crash seem obvious?" — a first half that rhymes with July 2008</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">The first half of 2026 is in the books: <strong>chipmakers just had their best-ever quarter, and the S&amp;P 500 its best since 2020</strong>. Authers pulled forward his <strong>Hindsight Capital</strong> review — the imaginary fund that invests with perfect foreknowledge — six months early. Why? Because "with another six months' hindsight, we may think it was always obvious a crash was coming."</div>
+        <ul class="news-points">
+          <li><strong>The 2008 template</strong>: in that year's first half, the winning trade was shorting banks and buying oil — it more than doubled your money. Then <strong>in early July it collapsed under its own weight</strong>: if the banking system was imploding, oil demand couldn't hold records. By year-end, bank stocks had beaten oil. "Is this the same juncture?"</li>
+          <li>Best trade of the half: <strong>short the S&amp;P 1500 software index, buy the SOX = +150%</strong>. Korea was more extreme still — <strong>the Kospi has nearly doubled this year</strong>; pairing long Kospi with short Jakarta trebled your money in six months</li>
+          <li>Hard money broke: <strong>long Brent (+19.8%) / short bitcoin (−33.3%) = +79.4%</strong>; long gasoline futures (+76.7%) / short silver (−18.3%) = +116%. The war made oil the more reliable hard asset, and then <strong>Warsh arrived as a genuine hawk</strong> — sinking the debasement trade</li>
+          <li><strong>The economic limit</strong> (BCA's Budaghyan): in the US, <strong>capex on everything except tech is falling</strong>. Tech capex passed its 2000 peak of 5% of GDP and is now <strong>above 7% in real terms</strong> — the very level at which housing bubbles burst in the US (7%), Japan (9%) and Spain (8%). "AI is beginning to suck in capital others cannot spare"; the argument that current trends have <strong>only months to run</strong> looks reasonable</li>
+          <li><strong>Speculative excess</strong>: big IPOs historically arrive at sector tops. And Korea's amazing advance happened <strong>despite an exodus of foreign capital</strong> — leaving the Kospi "alarmingly reliant on the exuberance of Korean retail investors." "It's hard to imagine that extreme rally lasting another six months without reversing — but we don't yet have hindsight"</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p><strong>One week after this piece, Korea's −20% bear market arrives on July 8.</strong> The three things Authers named — a retail-dependent Kospi, AI capex overshoot, and the July-2008 pattern — play out in exactly that order.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Iran / Ceasefire</span>
+        <div class="news-title">(6/29) US and Iran agree a ceasefire — but markets are already looking past it. Then what?</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Iran and the US <strong>agreed to stop firing at each other</strong>, and oil fell on hopes the four-month war was ending. But as Authers' headline implies, <strong>markets were already looking past the ceasefire</strong> — the question was what comes next.</div>
+        <ul class="news-points">
+          <li>A ceasefire isn't peace — it's a halt to shooting. Hormuz normalization, sanctions and the nuclear file remain unresolved, and the June 19 framework had already been canceled at the last minute</li>
+          <li>The paradox: cheaper oil eases inflation, but the reason for <strong>Warsh to stay hawkish (solid growth)</strong> is untouched → still no cuts</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>This is the very ceasefire Trump declares over on <strong>July 9</strong>. The peace markets had priced by "looking past it" evaporates in ten days.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Fed Independence</span>
+        <div class="news-title">(6/30) SCOTUS: the president can't fire Fed governors — Trump lost the battle, but look what he won</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">The Supreme Court <strong>blocked the firing of a Fed governor</strong>. On its face, a defeat for Trump and a win for <strong>Fed independence</strong>. But Authers reframes it: <strong>Trump lost the battle — look at what he won.</strong></div>
+        <ul class="news-points">
+          <li>What he won: he already installed <strong>his own pick in the chair (Warsh)</strong>. You can remake the Fed through appointments without any power to fire — the irony being that this Warsh turned out to be a hawk who refuses to cut</li>
+          <li>Market implication: the path to forcing rates down by political pressure is now <strong>legally closed too</strong> — the last basis for "cut expectations" is gone</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Yield Curve</span>
+        <div class="news-title">(7/2) "Warsh must beware of curves flattening to deceive" — he claims he's winning so far</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Warsh claims <strong>he's winning so far</strong> — inflation risks are receding thanks to his hawkishness. Authers' caution: <strong>a flattening yield curve can deceive.</strong> Long rates sinking may say "inflation is beaten" — or it may say "growth is cracking."</div>
+        <ul class="news-points">
+          <li>The same week's data pulled both ways: <strong>JOLTS vacancies returned to their pre-pandemic peak</strong> (strong) ↔ <strong>Friday's jobs report disappointed</strong> (weak)</li>
+          <li>Warsh's dilemma: stay hawkish into a growth crack, and the curve's "victory signal" turns out to have been a warning</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>"Inflation cooling while growth cracks" — the sketch of why, in July's selloff, the Fed can't come to the rescue.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Quarter End</span>
+        <div class="news-title">(7/1–3) The best quarter since 2020 — then Friday's jobs report disappoints</div>
+        <span class="news-source">Morning Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">On the half's final trading day, the <strong>S&amp;P 500 booked its best quarter since 2020</strong> ("Firework") — a half-year that survived a war, 4% inflation and a hawkish Fed because AI lifted everything. Then the tone began to shift as <strong>the July 3 jobs report disappointed</strong>.</div>
+        <ul class="news-points">
+          <li>China's AI is catching up to stalled-out US models (6/29) — the "Two Silicon Valleys" framing</li>
+          <li>7/1: Anthropic unveils <strong>Claude Fable 5</strong>; Meta starts renting out spare cloud capacity — an attempt to monetize capex overshoot</li>
+          <li>Trump says he made <strong>$1.2 billion</strong> from crypto businesses last year — reigniting the policy/asset conflict-of-interest debate</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jun 22–26 -->
+  <div class="date-group">
+    <div class="date-group-header">
+      <div class="date-group-date">June 22–26, 2026</div>
+      <div class="date-group-day">Mon–Fri — the tremor that came from Korea</div>
+      <div class="date-group-badge">Wk of Jun 22</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Korea / Bubble Watch</span>
+        <div class="news-title">(6/24) "It came from Korea" — one remark from SK Hynix, a 13.2% drop, and global tech shakes</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Tech sold off hard — and it couldn't be blamed on geopolitics (the Middle East was calming, oil falling). The spark came from <strong>Korea</strong>. <strong>SK Hynix</strong>, another freshly minted trillion-dollar chipmaker, announced nothing significant; it merely said it was <strong>"shifting its focus to the general-purpose DRAM market."</strong> Memory is less profitable → maybe it isn't quite the license to print money traders assumed → <strong>−13.2% in a day</strong>. Authers: "Is this the moment the bubble bursts? Probably not, but it's a mighty interesting juncture."</div>
+        <ul class="news-points">
+          <li>There was room to rethink because Hynix's run had been so breakneck it <strong>makes even the 2000 dot-com bubble pale</strong> by comparison</li>
+          <li>The real risk is <strong>leveraged single-stock ETFs</strong>: holders of Hong Kong's CSOP double-leveraged SK Hynix ETF saw −13.2% become <strong>−26.4%</strong>. Korean regulators, who recently allowed single-company ETFs, <strong>publicly regretted it this week</strong> — spooking the market further</li>
+          <li>Contagion: US <strong>momentum stocks</strong> took the hit — the S&amp;P 500 momentum ETF had its second-worst session since last year's Liberation Day. Even after the drop, the SOX sits far above its 200-day average, <strong>more overbought than at any time since the dot-com peak</strong></li>
+          <li>Authers: "Good news — so far this isn't even a correction. Worse news — that leaves much space for over-levered investors to suffer losses they can't afford." Even if the AI story is right, an over-extended, speculative market <strong>opens the risk of an accident</strong></li>
+          <li>Collateral damage, India: the war's most innocent bystander (energy importer next to the war zone). GDP grew 7.7%, yet its MSCI EM weight collapsed from 20% in 2024 to under 12% — "a disconnect of this magnitude doesn't come along often" (Barclays)</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p><strong>The clear precursor to Korea's July 8 bear market (−20%).</strong> That a non-event remark could produce −13.2% was itself the tremor revealing how fragile prices had already become.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">Software vs Semis</span>
+        <div class="news-title">(6/24) The "SaaSpocalypse" — software has shed a third in eight months as capital pours into AI infrastructure</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Even as investors fretted about chips, the software <strong>"SaaSpocalypse"</strong> ground on. The S&amp;P 1500 Software Index has lost <strong>nearly a third of its value in eight months</strong> — weakness that predates the Iran conflict.</div>
+        <ul class="news-points">
+          <li>The cause (Apollo's Torsten Slok): ① AI disrupting incumbents' business models ② higher-for-longer rates straining the debt that financed them. Direct lending to SaaS firms exploded from <strong>$8B in 2015 to $538B in 2025</strong>, leaving enormous capital exposed to both forces</li>
+          <li>Concerns over <strong>Anthropic's Mythos and Fable models</strong>, which prompted US export restrictions, add to the fears</li>
+          <li>But it isn't evaporation: flows crowding into AI capex plays mean software loses <strong>both capital and attention</strong> (Morningstar). D.E. Shaw finds productivity growth above 5% in the industries most exposed to AI — roughly double the economy-wide pace — so long term the sector could even benefit</li>
+          <li>The bull case for chips: BofA raised its US chip demand forecast to <strong>$2.7 trillion by 2030</strong> (from $2.3T), implying 28% annual growth — "memory shortages and price inflation remain the critical moving pieces"</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>The AI rally was never a rising tide — it was a <strong>zero-sum rotation from software into infrastructure</strong>. The more extreme the crowding, the more one wobble shakes everything: the structural backdrop to July.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Fed / Debasement Trade</span>
+        <div class="news-title">(6/25) How Warsh sank the debasement trade — while Micron calmed the chip fear</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">A day after the tremor from Korea, all eyes turned to <strong>Micron</strong> (now a $1.2 trillion company) and its fiscal third-quarter results — where forecast EPS had risen <strong>645% in 12 months</strong>, an expectations bar through the roof. The verdict: profits are growing even faster than thought, and the memory supercycle narrative held.</div>
+        <ul class="news-points">
+          <li>At the same time, Authers argued <strong>Warsh sank the "debasement trade"</strong> — his hawkish turn lifted real yields and the dollar, undermining the logic of buying gold and bitcoin against a debased currency</li>
+          <li>Bitcoin: the massive rally that followed institutions persuading the SEC to license spot ETFs is now <strong>"well and truly over"</strong> (Authers) — a structure that depended on drawing in ever more new buyers</li>
+          <li>So late June split in two: fundamentals (Micron) held, while the monetary/liquidity narrative (gold, crypto) broke on Warsh</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>Good earnings don't save you when the <strong>discount rate (real yields) rises</strong>. In July that combination — strong results, a hawkish Fed, and geopolitics returning — converges in its worst form.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-other">Fed History</span>
+        <div class="news-title">(6/23) Alan Greenspan dies at 100 — the era of the "Greenspan put" crosses paths with Warsh's</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">The Fed's long-time Maestro, <strong>Alan Greenspan, has died at 100</strong>. Authers' verdict: <strong>his legacy is as convoluted as his words</strong> — the chairman who spoke in deliberate obscurity, the author of the <strong>"Greenspan put"</strong> that promised a rescue whenever markets wobbled, and the man who warned of "irrational exuberance" yet couldn't stop the bubble.</div>
+        <ul class="news-points">
+          <li>The timing is pointed: the symbol of an era of many words and reliable rescues departs in the very week of <strong>Warsh — who says little (341→130 words) and won't rescue anyone</strong></li>
+          <li>Every overheating signal this week — SK Hynix, SpaceX, bitcoin ETFs — is now a test of how it all ends <em>without</em> a Greenspan put</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-tech">Consumer / AI Cost</span>
+        <div class="news-title">(6/26) "iFlation" — Apple raises prices on AI inflation · OpenAI kicks the IPO can</div>
+        <span class="news-source">Morning Brew · Tech Brew</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">The cost of the AI boom finally reached the <strong>consumer price tag</strong>. <strong>Apple raised prices across a range of products</strong> — because of AI inflation, i.e. surging component (memory) costs. Morning Brew's word for it: <strong>"iFlation."</strong></div>
+        <ul class="news-points">
+          <li>The causal loop closes: AI datacenter demand → memory shortages and price spikes (the very source of Hynix's and Micron's earnings) → <strong>higher device prices</strong> → consumer inflation → Warsh's vigilance</li>
+          <li>The same day, <strong>OpenAI delayed its IPO</strong> ("kicks the can") — refusing to rush even in a market where SpaceX hit $2.75T in three days</li>
+          <li>Prediction markets (Polymarket, Kalshi) are booming, but hacks and fake bets are multiplying alongside</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>Contrary to the "AI is deflationary" assumption, at this stage AI was a <strong>cause of inflation</strong> — pointing the same way as the June 11 small-business price warning, and stacking one more reason the Fed can't cut.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -3928,6 +4789,36 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
     </div>
   </div>
 
+  <!-- Jun 8–9 -->
+  <div class="date-group">
+    <div class="date-group-header">
+      <div class="date-group-date">June 8–9, 2026</div>
+      <div class="date-group-day">Mon–Tue — OpenAI joins the queue</div>
+      <div class="date-group-badge">Week 2</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI / IPO</span>
+        <div class="news-title">OpenAI's "not-so-secret" IPO filing — kicking off a super-week of CPI, the ECB and SpaceX's debut</div>
+        <span class="news-source">Finimize</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">OpenAI filed for an IPO on June 9 — a sharp reversal barely two months after April's earnings shock and a CFO who insisted the company wasn't ready to list. The same week lined up US CPI (6/10), the ECB decision (6/11) and SpaceX's debut (6/12).</div>
+        <ul class="news-points">
+          <li>As of May, OpenAI's discussed valuation stood at $852B — having been overtaken by Anthropic's $900B talks</li>
+          <li>With eurozone inflation at 3.2% in May, an ECB hike on 6/11 was seen as near-certain</li>
+          <li>"China has the goods" (rare earths and materials) emerged as a parallel pressure point</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>Three mega-IPOs queuing at once (SpaceX, OpenAI, Anthropic) is exactly the signal Authers later flags: big listings have a strong historical tendency to arrive at a sector's top.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Jun 1–5 -->
   <div class="date-group">
     <div class="date-group-header">
@@ -4142,6 +5033,48 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
           <li>Eli Lilly agreed to buy three vaccine makers (Curevo/shingles $1.5B, LimmaTech $780M, Vaccine Company/EBV $1.55B) for <strong>~$4B</strong> — diversifying beyond GLP-1s and bracing for a <strong>$180B industry patent cliff</strong> over two years. Lilly holds ~60% of the US obesity-drug market</li>
           <li>Also: Oklo +4.31% (Meta nuclear deal), datacenter-cooling Modine +13.55%, Dell +3.84% ($9.7B defense software), Caesars sold for $6B</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-market">Chips / $1T Club</span>
+        <div class="news-title">(5/27) Authers: "A rally for the memory banks" — worst consumer sentiment since 1978, yet a record S&amp;P, entirely on chips</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">"Demand for silicon chips is sky-high, their supply is limited, and that means their share price has gone parabolic." That one line, Authers says, explains why the S&amp;P 500 closed at yet another record despite <strong>the worst University of Michigan consumer sentiment reading since the survey began in 1978</strong>. <strong>Micron jumped 19.3% into the $1 trillion club</strong> (now 10 US members), and <strong>hours later SK Hynix crossed the same line</strong> — Samsung having done so weeks earlier. The biggest chipmakers now rival or surpass Meta.</div>
+        <ul class="news-points">
+          <li>Two catalysts for Micron: ① <strong>UBS doubled its target</strong> — if right, Micron is worth about <strong>$1.8 trillion</strong> a year from now ② Huawei proclaimed a breakthrough it calls Logic Folding (China's bid in the AI war) — which, paradoxically, was taken as a reason to pile into US chipmakers</li>
+          <li><strong>Leadership has changed hands</strong>: this is a belated correction to the assumption the Magnificent Seven would hog AI's returns — hyperscalers must spend heavily, and much of their projected profit flows to <strong>key suppliers</strong>. Hindsight Capital's "short Mag 7, buy the SOX" returned <strong>71%</strong> this year. Of the S&amp;P's 672-point rally, Mag 7 contributed 160 points and seven SOX chipmakers 289 — strip out Nvidia and it's <strong>79 points for the Mag Six vs 369 for the SOX 8</strong></li>
+          <li><strong>But this isn't a valuation bubble</strong>: on a multiple of expected earnings over the next two years, Micron is actually cheaper than the S&amp;P 500. The catch is that cheapness <strong>assumes the forward estimates are reasonable</strong> — "If these estimates are right, chipmakers will make fortunes. But <strong>there's a very good chance that they aren't</strong>"</li>
+          <li>Same for EM: <strong>strip out its three biggest AI proxies</strong> and the group is back where it stood right after last year's Liberation Day. MSCI EM's four largest constituents — China, South Korea, India, Taiwan — are all among those <strong>most vulnerable to a prolonged Hormuz closure</strong></li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>The <strong>origin point</strong> of Korea's July 8 bear market. The warning that "the estimates may be wrong" runs straight through SK Hynix's −13.2% on June 24, the "retail-dependent Kospi" of July 1, and −20% on July 8.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-war">Oil / Politics</span>
+        <div class="news-title">(5/26–28) "Peace — or surrender — in the Strait" · oil −5.6%, and why the market isn't working as Trump's guardrail</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">As hopes of an Iran deal grew, <strong>WTI dropped 5.55% to $88.68</strong>. But Authers described what was happening at Hormuz as <strong>"peace — or surrender."</strong> And he posed a larger question: <strong>why isn't the market working as Trump's guardrail?</strong></div>
+        <ul class="news-points">
+          <li>Traditionally, bond and equity markets discipline a president's policies (Liz Truss lasted 49 days). But with <strong>the AI boom holding prices up, the market can't sound its alarm</strong></li>
+          <li>The result: policy experiments — tariffs, the Middle East, Fed appointments — proceed without a brake, so risk isn't priced. It <strong>accumulates</strong> instead</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>"If the market won't warn, policy won't stop" — the prototype of June's "AI masks the war." The accumulated bill comes due in July.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -4411,6 +5344,46 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
         <div class="news-impact">
           <div class="news-impact-label">💡 Big-picture link</div>
           <p>Government buying equity in chips, critical minerals and now quantum — the spread of "state capitalism." Fiscal intervention justified by AI and security has become a market theme in itself.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-macro">Bonds</span>
+        <div class="news-title">(5/19–20) Authers: "The great bond car wreck — in slow motion" — 30-year yields at a 19-year high may end the cheap-money era</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Obscured by AI euphoria, mid-May's real event was in bonds. <strong>The 30-year Treasury yield burst through to a 19-year high</strong>, breaking long-held landmarks one by one. Authers called it <strong>"the great bond car wreck — in slow motion"</strong>: not a crisis that detonates, but destruction that proceeds slowly and surely.</div>
+        <ul class="news-points">
+          <li>What it means: war-driven inflation plus fiscal strain could <strong>end the era of cheap funds</strong>. Rising long rates lift the discount rate on every asset</li>
+          <li>The irony of the moment: bonds were sounding an alarm while <strong>equities stayed serene on AI</strong> — two markets living in different worlds</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>It returns as Warsh's hawkish surprise lifts real yields on June 18, and as the cause of software's collapse on June 24 ("rates higher-for-longer than expected strain the debt"). The bass note running under the whole summer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNews(this)">
+        <span class="news-category cat-ai">AI / IPO</span>
+        <div class="news-title">(5/21) "SpaceX IPO turns Nvidia into a sNoozefest" — 85% sales growth, 62% margins, and the stock dipped</div>
+        <span class="news-source">Bloomberg · John Authers</span>
+        <span class="news-expand">▾</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">Nvidia posted staggering numbers — <strong>85% sales growth and 62% margins</strong> — and the stock <strong>dipped</strong>. Attention had already moved on to the coming <strong>SpaceX IPO</strong>; in Authers' phrase, Nvidia had become a "sNoozefest."</div>
+        <ul class="news-points">
+          <li>The tell: when <strong>even world-beating results can't lift a stock</strong>, expectations are fully in the price</li>
+          <li>Meanwhile capital rotates toward the newer story (SpaceX) — the beginning of new mega-listings crowding out incumbent leaders</li>
+        </ul>
+        <div class="news-impact">
+          <div class="news-impact-label">💡 Big-picture link</div>
+          <p>The opening scene of Authers' July 1 warning that <strong>big IPOs have a strong historical tendency to arrive at a sector's top</strong>. May's yawn was the prologue to July 9's "like AI never happened."</p>
         </div>
       </div>
     </div>
@@ -5202,6 +6175,152 @@ hr.thin{border:none;border-top:1px solid var(--rule);margin:14px 0 0;}
 
 </div>
 </div><!-- /tab-en-monthly -->
+
+<div class="page" id="tab-en-quarterly">
+<div class="q-page-wrap">
+
+  <div style="margin-bottom:24px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);margin-bottom:6px;">📊 Quarterly Summary</h2>
+    <p style="font-size:13px;color:var(--ink-muted);">Once a quarter closes, we keep only what happened and why — across four strands: politics, markets, tech and AI.</p>
+  </div>
+
+  <!-- Q2 2026 -->
+  <div class="q-block">
+    <div class="q-header">
+      <div class="q-title">Q2 2026 <span style="font-size:13px;color:var(--ink-muted);font-family:'Inter',sans-serif;">Apr – Jun</span></div>
+      <div class="q-subtitle">In one line: <strong>the war never ended, but AI covered for it — so stocks hit records, and from late June the cover began to slip.</strong></div>
+    </div>
+    <div class="q-body">
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-war)">🌐 Politics — at home and abroad</div>
+        <ul>
+          <li><strong>The Iran war was the quarter's background noise.</strong> Ten weeks after Trump declared Iran's navy and air force "demolished," Iran kept choking the Strait of Hormuz. Oil topped $120 in May; on June 1 Iran vowed to block Hormuz "completely" (oil +5.9%)</li>
+          <li><strong>A mid-June peace framework → canceled at the last minute on Friday June 19.</strong> It revived as a ceasefire on June 29 — which itself collapsed on July 8–9</li>
+          <li><strong>The Fed was the biggest political event</strong>: Powell's final FOMC on May 1 (he stays on as a governor), then <strong>Warsh confirmed 54–45 on May 15 — the slimmest margin ever</strong>. On June 30 the Supreme Court ruled the president cannot fire Fed governors: Trump lost, but he had already installed his own chair</li>
+          <li><strong>US–China settled into "managed competition"</strong>: a May Trump–Xi summit in Beijing (three years of "strategic stability," 200 Boeings) alongside June's tariff sequel (12.5% on Korea) and the G7's push away from Chinese rare earths</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>Iran learned it could keep its regime <em>and</em> control the waterway, and the US had no cheap way to reverse that. So diplomacy could only paper over the gap with <strong>a deliberately ambiguous document</strong> — Authers called it not a Memorandum of Understanding but a <em>Memorandum of Misunderstanding</em>. July's rupture was inside that margin of error from the start.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-now,#b45309)">📈 Markets</div>
+        <ul>
+          <li><strong>The S&amp;P 500 booked its best quarter since 2020</strong> (June 30) — even as University of Michigan consumer sentiment hit <strong>its worst reading since the survey began in 1978</strong>. Virtually the entire gain came from semiconductors</li>
+          <li><strong>The Shiller CAPE reached its highest since Sept 2000, exceeding even the eve of the 1929 crash</strong> (June 1); sales multiples were the highest in history</li>
+          <li><strong>Bonds and FX</strong>: May's 30-year yield hit a 19-year high ("the great bond car wreck, in slow motion"). Warsh's June 18 hawkish surprise sent TIPS real yields to a one-year high and gave the dollar its strongest rise of the year. The average year-end dot moved from 3.24% to <strong>3.83%</strong></li>
+          <li><strong>Inflation</strong>: headline CPI topped <strong>4% for the first time in three years</strong> (June 10). The ECB hiked; the BOJ raised rates to their highest since 1995 — while the UK's expected hikes fell from three to one as oil cooled</li>
+          <li><strong>The debasement trade broke</strong>: for the half, Brent +19.8% vs bitcoin −33.3%. Warsh's hawkishness dismantled the logic of gold and crypto</li>
+          <li><strong>Cracks at quarter-end</strong>: SK Hynix −13.2% on June 24 (its 2x leveraged ETF −26.4%); investors began rotating out of the Magnificent Seven on June 30</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>With the war pushing inflation up, <strong>hopes of cuts were dead</strong> — yet stocks rose anyway, for one reason: AI profits genuinely exploded. But that <strong>changed what the index was</strong>: strip out tech, Korea and Taiwan, and major MSCI markets were all down since the war began (Authers, June 11). Q2's rally wasn't "the economy is good"; it was <strong>one sector covering for everything else</strong> — which is why, when that sector wobbled, everything wobbled.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">💻 Tech</div>
+        <ul>
+          <li><strong>The $1 trillion club filled up with chipmakers</strong>: after Samsung in May, <strong>Micron (+19.3%) and SK Hynix crossed the line hours apart on May 27</strong>. The biggest chipmakers now rival or surpass Meta</li>
+          <li><strong>Leadership changed hands</strong>: of the S&amp;P's 672-point rally, the Mag 7 contributed 160 points and seven SOX chipmakers 289 — strip out Nvidia and it's <strong>79 vs 369</strong>. "Short software, buy the SOX" returned <strong>150%</strong> in the half</li>
+          <li><strong>The SaaSpocalypse</strong>: the S&amp;P 1500 Software Index shed a third of its value in eight months. Direct lending to SaaS firms grew from $8B in 2015 to <strong>$538B in 2025</strong></li>
+          <li><strong>The biggest IPO rush ever</strong>: <strong>SpaceX debuted at $1.78T on June 12</strong> and hit $2.75T three days later, overtaking Amazon; OpenAI (6/9) and Anthropic (6/1) filed</li>
+          <li><strong>"iFlation"</strong> (June 26): Apple raised prices because AI-driven memory costs exploded — AI's bill reached the consumer price tag</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>One realization reorganized the market: <strong>hyperscalers won't hog AI's profits — they must spend enormously, and that money goes to suppliers (chips).</strong> Capital rotated from software and platforms into infrastructure. The catch: this was <strong>a zero-sum rotation, not a rising tide</strong>. Virtually all the free cash hyperscalers generate now goes to capex (Microsoft sat 28% below its high), and tech capex passed <strong>7% of real GDP</strong> — the level at which housing bubbles burst in the US, Japan and Spain.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">🤖 AI</div>
+        <ul>
+          <li><strong>The model contest changed shape</strong>: April 30 earnings confirmed the pivot from <strong>"we offer the best model" to "we host every model — a marketplace"</strong> (Apple did the same, bolting outside models onto Siri at WWDC)</li>
+          <li><strong>Anthropic passed OpenAI</strong> (May 29: $965B vs $852B); unveiled "Fable" on June 10 and Claude Fable 5 on July 1</li>
+          <li><strong>AI became a national-security category</strong>: in mid-June Washington ordered Anthropic to <strong>switch off its most powerful models for all non-US citizens</strong> ("could chill the whole AI trade"); Mythos and Fable prompted export restrictions</li>
+          <li><strong>China closed the gap</strong>: Huawei's "Logic Folding" breakthrough (May 27), Zhipu's surge (late June), and reports that Chinese AI was catching stalled-out US models (June 29)</li>
+          <li><strong>The temperature started dropping</strong>: Oracle fell 25% from its peak on June 10 after disclosing soaring capex — the market began asking <strong>"where does the money come from?"</strong></li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>In Q2, AI moved <strong>from a technology race to a capital-and-politics race</strong>. As the performance gap narrowed (marketplaces, Chinese catch-up), the contest shifted to ① who secures chips and power ② who gets government permission. That's why <strong>even great earnings</strong> couldn't lift prices: financing strain and regulatory risk did the work — the real engine of the late-June and July repricing.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Q1 2026 -->
+  <div class="q-block">
+    <div class="q-header">
+      <div class="q-title">Q1 2026 <span style="font-size:13px;color:var(--ink-muted);font-family:'Inter',sans-serif;">Jan – Mar</span></div>
+      <div class="q-subtitle">In one line: <strong>the tariff regime collapsed in court and a Fed handover loomed — then March's Iran war dropped an energy shock on top.</strong></div>
+    </div>
+    <div class="q-body">
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-war)">🌐 Politics — at home and abroad</div>
+        <ul>
+          <li><strong>The IEEPA ruling</strong> struck down the emergency-powers basis for Trump 2.0's tariffs — moving trade policy from presidential discretion back to law and Congress</li>
+          <li><strong>The Fed handover came into view</strong> as Powell's term wound down. Trump wanted a 3% inflation target (which would make cuts easy); markets expected an obedient dove</li>
+          <li><strong>Feb 27: war between the US and Iran</strong>, choking the Strait of Hormuz and hitting the energy supply chain — the constant behind every macro question thereafter</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>Q1's character was <strong>policy discretion colliding with institutions</strong>: tariffs stopped by courts, Fed capture limited to appointments (and later blocked outright by the Supreme Court). But <strong>geopolitics filled the vacuum</strong> — a shock no court could enjoin arrived in March.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-now,#b45309)">📈 Markets</div>
+        <ul>
+          <li><strong>The war split the year in two</strong>: after Feb 27, <strong>every major MSCI market except tech, Korea and Taiwan turned negative</strong> — a fact the index would hide for the next two quarters</li>
+          <li><strong>Inflation expectations jumped</strong>: 1–2yr breakevens rose 100bps right after the war began, and year-end Fed-rate expectations rose 75bps — scrapping the "easing cycle" scenario wholesale</li>
+          <li><strong>Hard money peaked</strong>: precious metals hit records early in the year, and bitcoin's all-time high dated to October. Both were primed to turn</li>
+          <li><strong>Energy was the only winner</strong> — briefly. Energy stocks surged in March, but across Trump 2.0 they ended up matching the rest of the market, because the oil shock diffused into everything</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>A war is a <strong>supply shock</strong>, and central banks have no good answer: hike and growth dies, cut and prices run. So Q1 markets abandoned the easing story — and the vacuum was filled by the one remaining bull case, <strong>AI earnings growth</strong>. The seed of Q2's crowding was planted here.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">💻 Tech</div>
+        <ul>
+          <li><strong>The chip concentration began</strong>: with everything else shaking, AI demand was the only certain growth story. Memory shortages fed price inflation, and forward earnings estimates for Samsung, SK Hynix and Micron began climbing fast</li>
+          <li><strong>Software's decline had already started</strong> — the S&amp;P 1500 Software Index's weakness <strong>predates the Iran conflict</strong> (AI disrupting incumbents' models, plus higher-for-longer rates straining the debt behind them)</li>
+          <li><strong>The IPO pipeline formed</strong>: SpaceX, OpenAI and Anthropic listing talks turned into a valuation race through the quarter</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>Scarcity did it: "certain growth in an uncertain world" pulled <strong>capital into one place</strong>. What later became clear is that this was a <strong>positioning</strong> problem, not a valuation one — in Q2 the earnings estimates caught up, completing a bubble that looked cheap.</p>
+        </div>
+      </div>
+
+      <div class="q-sector">
+        <div class="q-sector-title" style="color:var(--era-tech)">🤖 AI</div>
+        <ul>
+          <li><strong>AI supremacy became national strategy</strong> — both Washington and Beijing began treating AI as a security asset; rare earths and compute joined the list of "new strategic assets"</li>
+          <li><strong>The frontier race intensified</strong>, spilling from models into talent and capital (leading to April's Karpathy hire and the rest)</li>
+          <li><strong>The regulatory shadow appeared</strong>: the EU began restricting access to top-tier models — the precursor to June's US order freezing Anthropic for non-citizens</li>
+        </ul>
+        <div class="q-why">
+          <div class="q-why-label">Why it happened</div>
+          <p>Once models became good enough <strong>to find security vulnerabilities</strong>, AI stopped being a product and started being treated as <strong>a weapons category</strong>. That shift in perception settled in during Q1 — and in Q2 it became the reality that a single government letter can halt even the best company overnight.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div><!-- /tab-en-quarterly -->
 
 <script>
 /* Tab switching */
